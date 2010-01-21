@@ -5,10 +5,57 @@
 	<key>HierarchyData</key>
 	<array>
 		<string>4FFA4760-C0E2-4A93-97AF-F1EA2A5B2A75</string>
+		<string>B3881101-1C8F-490E-950F-7704EBC02F85</string>
 		<string>57444230-011E-493C-A1CE-B84AB324FD25</string>
+		<string>27D65521-2157-4720-9867-EB62B1A71AA2</string>
 	</array>
 	<key>ProjectItems</key>
 	<dict>
+		<key>27D65521-2157-4720-9867-EB62B1A71AA2</key>
+		<dict>
+			<key>ItemData</key>
+			<dict>
+				<key>AliasData</key>
+				<data>
+				AAAAAAMMAAIAAQhkZXJvc2llcgAAAAAAAAAAAAAAAAAA
+				AAAAAADDx9AqSCsABQAgyuYLUHJvZ3JhbW1pbmcAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAACJD5sbOkAAAAAAAAAAAAP//
+				//8AAA0CAAAAAAAAAAAAAAAAAAAACVBvcnRmb2xpbwAA
+				EAAIAADDyECqAAAAEQAIAADGzvJwAAAAAQAMACDK5gAf
+				QG8AAAKTAAIANmRlcm9zaWVyOkRlc2t0b3A6Sm9iIFNl
+				YXJjaCAyMDA5OlBvcnRmb2xpbzpQcm9ncmFtbWluZwAO
+				ABgACwBQAHIAbwBnAHIAYQBtAG0AaQBuAGcADwASAAgA
+				ZABlAHIAbwBzAGkAZQByABIALi9EZXNrdG9wL0pvYiBT
+				ZWFyY2ggMjAwOS9Qb3J0Zm9saW8vUHJvZ3JhbW1pbmcA
+				EwAPL1VzZXJzL2Rlcm9zaWVyAAAUAYAAAAAAAYAAAgAB
+				DE1hY2ludG9zaCBIRAAAAAAAAAAAAAAAAAAAAMLaS1hI
+				KwAAAA0bsRVkZXJvc2llci5zcGFyc2VidW5kbGUAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAAAADRuyw8fQKQAAAAAAAAAA/////wAACSAAAAAA
+				AAAAAAAAAAAAAAAJLmRlcm9zaWVyAAAQAAgAAMLarcgA
+				AAARAAgAAMPIQKkAAAABAAgADRuxAA0brwACADJNYWNp
+				bnRvc2ggSEQ6VXNlcnM6LmRlcm9zaWVyOmRlcm9zaWVy
+				LnNwYXJzZWJ1bmRsZQAOACwAFQBkAGUAcgBvAHMAaQBl
+				AHIALgBzAHAAYQByAHMAZQBiAHUAbgBkAGwAZQAPABoA
+				DABNAGEAYwBpAG4AdABvAHMAaAAgAEgARAASACVVc2Vy
+				cy8uZGVyb3NpZXIvZGVyb3NpZXIuc3BhcnNlYnVuZGxl
+				AAATAAEvAP//AAAAFQACAA///wAA
+				</data>
+				<key>FileURL</key>
+				<string>file://localhost/Users/derosier/Desktop/Job%20Search%202009/Portfolio/Programming/</string>
+				<key>RelativePath</key>
+				<string>../../Desktop/Job Search 2009/Portfolio/Programming</string>
+				<key>TypeID</key>
+				<string>_CFileLocator</string>
+				<key>Version</key>
+				<integer>1</integer>
+			</dict>
+			<key>ItemName</key>
+			<string>Programming</string>
+			<key>ItemType</key>
+			<string>FolderReference</string>
+		</dict>
 		<key>4FFA4760-C0E2-4A93-97AF-F1EA2A5B2A75</key>
 		<dict>
 			<key>ItemData</key>
@@ -94,6 +141,50 @@
 			</dict>
 			<key>ItemName</key>
 			<string>Makefile</string>
+			<key>ItemType</key>
+			<string>FileReference</string>
+		</dict>
+		<key>B3881101-1C8F-490E-950F-7704EBC02F85</key>
+		<dict>
+			<key>ItemData</key>
+			<dict>
+				<key>AliasData</key>
+				<data>
+				AAAAAALkAAIAAAhkZXJvc2llcgAAAAAAAAAAAAAAAAAA
+				AAAAAADDx9AqSCsABQApaX4JdmVyc2lvbi5oAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAClqHMHrhEsAAAAAAAAAAP//
+				//8AAA0CAAAAAAAAAAAAAAAAAAAACWRucy1zcG9vZgAA
+				EAAIAADDyECqAAAAEQAIAADB6/TLAAAAAQAIAClpfgAB
+				NjkAAgAlZGVyb3NpZXI6cHJvamVjdHM6ZG5zLXNwb29m
+				OnZlcnNpb24uaAAADgAUAAkAdgBlAHIAcwBpAG8AbgAu
+				AGgADwASAAgAZABlAHIAbwBzAGkAZQByABIAHS9wcm9q
+				ZWN0cy9kbnMtc3Bvb2YvdmVyc2lvbi5oAAATAA8vVXNl
+				cnMvZGVyb3NpZXIAABQBgAAAAAABgAACAAEMTWFjaW50
+				b3NoIEhEAAAAAAAAAAAAAAAAAAAAwtpLWEgrAAAADRux
+				FWRlcm9zaWVyLnNwYXJzZWJ1bmRsZQAAAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN
+				G7LDx9ApAAAAAAAAAAD/////AAAJIAAAAAAAAAAAAAAA
+				AAAAAAkuZGVyb3NpZXIAABAACAAAwtqtyAAAABEACAAA
+				w8hAqQAAAAEACAANG7EADRuvAAIAMk1hY2ludG9zaCBI
+				RDpVc2VyczouZGVyb3NpZXI6ZGVyb3NpZXIuc3BhcnNl
+				YnVuZGxlAA4ALAAVAGQAZQByAG8AcwBpAGUAcgAuAHMA
+				cABhAHIAcwBlAGIAdQBuAGQAbABlAA8AGgAMAE0AYQBj
+				AGkAbgB0AG8AcwBoACAASABEABIAJVVzZXJzLy5kZXJv
+				c2llci9kZXJvc2llci5zcGFyc2VidW5kbGUAABMAAS8A
+				//8AAAAVAAIAD///AAA=
+				</data>
+				<key>FileURL</key>
+				<string>file://localhost/Users/derosier/projects/dns-spoof/version.h</string>
+				<key>RelativePath</key>
+				<string>./version.h</string>
+				<key>TypeID</key>
+				<string>_CFileLocator</string>
+				<key>Version</key>
+				<integer>1</integer>
+			</dict>
+			<key>ItemName</key>
+			<string>version.h</string>
 			<key>ItemType</key>
 			<string>FileReference</string>
 		</dict>
