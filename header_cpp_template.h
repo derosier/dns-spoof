@@ -18,6 +18,8 @@
 // function here).
 //
 //****************************************************************************
+//  $Id:$
+//****************************************************************************
 
 // Change MODULENAME_H_ to match your module name.
 // This ensures that this header doesn't get
