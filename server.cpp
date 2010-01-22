@@ -1,8 +1,8 @@
 //****************************************************************************
-// Module name :  
-// Project     :
+// Module name : Server 
+// Project     : dns-spoof
 //
-// Copyright (C) 2007 Cal-Sierra Communications.
+// Copyright (C) 2010 Cal-Sierra Communications.
 // All rights reserved.
 //
 // The information contained herein is confidential 
@@ -10,12 +10,13 @@
 // disclosure of such information is prohibited except
 // by express written agreement with Company.
 //
-// First written on xxxxx by Steve deRosier.
+// First written on 1/22/2010 by Steve deRosier.
 //
 // Module Description:
-// (fill in a detailed description of the module's 
-// function here).
+//    Main server module for dns-spoof
 //
+//****************************************************************************
+//  $Id:$
 //****************************************************************************
 
 //****************************************************************************

@@ -1,9 +1,9 @@
 //****************************************************************************
-// Module name : 
-// Project     :
+// Module name : Server
+// Project     : dns-spoof
 // Interface (header) File
 //
-// Copyright (C) 2007 Cal-Sierra Communications.
+// Copyright (C) 2010 by Steve deRosier.
 // All rights reserved.
 //
 // The information contained herein is confidential 
@@ -11,19 +11,21 @@
 // disclosure of such information is prohibited except
 // by express written agreement with Company.
 //
-// First written on xxxxx by Steve deRosier.
+// First written on 1/22/2010 by Steve deRosier.
 //
 // Module Description:
 // (fill in a detailed description of the module's 
 // function here).
 //
 //****************************************************************************
+//  $Id:$
+//****************************************************************************
 
 // Change MODULENAME_H_ to match your module name.
 // This ensures that this header doesn't get
 // included multiple times accidently              
-#ifndef MODULENAME_H_
-#define MODULENAME_H_
+#ifndef SERVER_H_
+#define SERVER_H_
 
 // Don't change the following 3 lines.
 // This checks and throws an error in case you

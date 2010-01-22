@@ -1,8 +1,8 @@
 //****************************************************************************
-// Module name :  
-// Project     :
+// Module name : 
+// Project     : 
 //
-// Copyright (C) 2007 Cal-Sierra Communications.
+// Copyright (C) 2010 by Steve deRosier.
 // All rights reserved.
 //
 // The information contained herein is confidential 
