@@ -42,6 +42,7 @@
 // Add all #includes here
 //
 //****************************************************************************
+#include <string>
 
 //****************************************************************************
 //  Defines section
@@ -62,6 +63,51 @@
 // Define the module's class (or classes) here.
 //
 //****************************************************************************
+
+// Generic error class
+class CError 
+{
+public:
+   virtual ~CError() {};
+   
+   virtual const std::string ErrString(void) { return "CError"; };
+   virtual int ErrValue(void) { return 0xFFFFFFFF; };
+};
+
+// CE_DaemonFail
+class CE_DaemonFail : public CError
+{
+public:
+   enum tError { BAD_FORK, FAIL_SID, FAIL_CHDIR };
+   
+   CE_DaemonFail( const tError Type ) : mType(Type) { }; 
+   virtual ~CE_DaemonFail() {};
+   
+   const std::string ErrString(void)
+   {
+      std::string RVal = "unknown failure";
+      switch( mType )
+      {
+         case BAD_FORK:
+            RVal = "call to fork failed";
+            break;
+         case FAIL_SID:
+            RVal = "call to setsid failed";
+            break;
+         case FAIL_CHDIR:
+            RVal = "call to chdir failed";
+            break;
+      }
+      
+      return RVal;
+   }
+   
+   int ErrValue(void) { return mType; };
+   
+private:
+   tError mType;
+   
+};
 
 // Don't touch this last line.  Nothing should be 
 // entered below here.

@@ -16,7 +16,7 @@
 // Main module of the dns-spoof program for Cozybit.
 //
 //****************************************************************************
-// $Id:$
+// $Id$
 //****************************************************************************
 
 //****************************************************************************
@@ -28,7 +28,16 @@
 #include <string>
 #include <getopt.h>
 
+// Below required for daemonizing code
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <stdlib.h>
+
+// My include
 #include "version.h"
+#include "server.h"
+#include "cerror.h"
 
 using namespace std;
 
@@ -45,6 +54,8 @@ using namespace std;
 // module, with the exception of runtime routines,
 // or prototypes already included via header files.
 //****************************************************************************
+void Daemonize( void );
+
 void PrintCopyright( void );
 void PrintHelp( void );
 void ExitClean( int ExitVal );
@@ -119,13 +130,100 @@ int main( int argc, char * argv[] )
    }
    
    
+   ///////////////////////////////////
+   // Do setup tasks
+   ///////////////////////////////////
+   if( !ConsoleMode )
+   {
+#ifdef DEBUG_BUILD
+      cout << "Daemonizing" << endl;
+#endif         
+      try
+      {
+         Daemonize();
+      }
+      catch( CE_DaemonFail & e )
+      {
+         cerr << "Error: unable to daemonize the process -> " << e.ErrString() << endl;
+         ExitClean( EXIT_FAILURE );
+      }
+      catch(...)
+      {
+         cerr << "Error: Unexpected error." << endl;
+         ExitClean( EXIT_FAILURE );
+      }
+   }
+   else
+   {
+#ifdef DEBUG_BUILD
+      cout << "--console flag given, not going to Daemon mode" << endl;
+#endif         
+   }
    
-   
+
+   ///////////////////////////////////
+   // Run main server
+   ///////////////////////////////////
    std::cout << "Hello, this is " << argv[0] << std::endl;
+   while(1)
+   {
+   }
    
-   ExitClean( 0 );
+   ExitClean( EXIT_SUCCESS );
 }
 
+//****************************************************************************
+// Function name: void Daemonize( void )
+//    returns: nothing
+// Created by: Steve deRosier
+// Date created: 1/22/2010
+// Description: Deamonizes the process.  
+// Credit: Adapted from code by Devin Watson under the BSD license.
+//         http://www.netzmafia.de/skripten/unix/linux-daemon-howto.html
+//****************************************************************************
+void Daemonize( void )
+{
+   pid_t pid;  // our process id
+   
+   // Fork off the parent process
+   pid = fork();
+   if( pid < 0 )
+   {
+      throw CE_DaemonFail( CE_DaemonFail::BAD_FORK );
+   }
+   
+   // If we got a good PID, then we can exit the parent process.
+   if( pid > 0 ) 
+   {
+      ExitClean(EXIT_SUCCESS);
+   }
+   
+   // Change the file mode mask
+   umask(0);
+   
+   // Open any logs here 
+   
+   // Create a new SID for the child process 
+   pid_t sid;  // Our session id
+   sid = setsid();
+   if( sid < 0 ) 
+   {
+      // Log the failure 
+      throw CE_DaemonFail( CE_DaemonFail::FAIL_SID );
+   }
+
+   // Change the current working directory
+   if( (chdir("/")) < 0 ) 
+   {
+      // Log the failure
+      throw CE_DaemonFail( CE_DaemonFail::FAIL_CHDIR );
+   }
+   
+   // Close out the standard file descriptors
+   close(STDIN_FILENO);
+   close(STDOUT_FILENO);
+   close(STDERR_FILENO);
+}
 
 //****************************************************************************
 // Function name: void PrintCopyright( void )
@@ -137,11 +235,11 @@ int main( int argc, char * argv[] )
 //****************************************************************************
 void PrintCopyright( void )
 {
-/* Display the copyright message */
-cout << "=================================================================" << endl;
-cout << _PROJECT << " " << _VERSION << endl;
-cout << _COPYRIGHT << endl;
-cout << "=================================================================" << endl;
+   // Display the copyright message
+   cout << "=================================================================" << endl;
+   cout << _PROJECT << " " << _VERSION << endl;
+   cout << _COPYRIGHT << endl;
+   cout << "=================================================================" << endl;
 
 }
 
@@ -154,13 +252,13 @@ cout << "=================================================================" << e
 //****************************************************************************
 void PrintHelp( void )
 {
-cerr << _PROJECT << " spoofs a DNS response to a hard-coded address.\n";
-cerr << "usage: " << _PROJECT << " [options]\n";
-cerr << endl;
-cerr << "    -c --console   Don't daemonize, run in console mode.\n";
-cerr << "    -v --version   Display the version and quit.\n";
-cerr << "    -h --help      Display this message.\n";
-cerr << endl;
+   cerr << _PROJECT << " spoofs a DNS response to a hard-coded address.\n";
+   cerr << "usage: " << _PROJECT << " [options]\n";
+   cerr << endl;
+   cerr << "    -c --console   Don't daemonize, run in console mode.\n";
+   cerr << "    -v --version   Display the version and quit.\n";
+   cerr << "    -h --help      Display this message.\n";
+   cerr << endl;
 }
 
 //****************************************************************************
@@ -174,14 +272,14 @@ cerr << endl;
 //****************************************************************************
 void ExitClean( int ExitVal )
 {
-//  using namespace MainLocals;
-
-// Might as well make sure all output got out.
-cout << flush;
-
-// Call exit.  0 means normal exit, other values are error codes.  ExitVal
-// is given to us by the caller to indicate
-exit( ExitVal ); 
+   //  using namespace MainLocals;
+   
+   // Might as well make sure all output got out.
+   cout << flush;
+   
+   // Call exit.  0 means normal exit, other values are error codes.  ExitVal
+   // is given to us by the caller to indicate
+   exit( ExitVal ); 
 
 }
 
@@ -196,5 +294,5 @@ exit( ExitVal );
 //****************************************************************************
 void Error( const string & ErrStr )
 {
-cerr << "Error: " << ErrStr << endl;
+   cerr << "Error: " << ErrStr << endl;
 }
