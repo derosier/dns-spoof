@@ -5,42 +5,9 @@
 	<key>EmbeddedEditorHidden:derosier</key>
 	<false/>
 	<key>ExpandedEditorWidth:derosier:displays([(0, 0), (1680, 1050)]:[(1680, 0), (1440, 900)])</key>
-	<integer>641</integer>
+	<integer>801</integer>
 	<key>ExpandedItems:derosier</key>
-	<array>
-		<string>27D65521-2157-4720-9867-EB62B1A71AA2</string>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAMIAAIAAQhkZXJvc2llcgAAAAAAAAAAAAAAAAAAAAAAAADD
-			x9AqSCsABQAiQ+YCUEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACJE
-			RMbOlCgAAAAAAAAAAP////8AAA0CAAAAAAAAAAAAAAAAAAAAC1By
-			b2dyYW1taW5nAAAQAAgAAMPIQKoAAAARAAgAAMbO9pgAAAABABAA
-			IkPmACDK5gAfQG8AAAKTAAIAOWRlcm9zaWVyOkRlc2t0b3A6Sm9i
-			IFNlYXJjaCAyMDA5OlBvcnRmb2xpbzpQcm9ncmFtbWluZzpQRAAA
-			DgAGAAIAUABEAA8AEgAIAGQAZQByAG8AcwBpAGUAcgASADEvRGVz
-			a3RvcC9Kb2IgU2VhcmNoIDIwMDkvUG9ydGZvbGlvL1Byb2dyYW1t
-			aW5nL1BEAAATAA8vVXNlcnMvZGVyb3NpZXIAABQBgAAAAAABgAAC
-			AAEMTWFjaW50b3NoIEhEAAAAAAAAAAAAAAAAAAAAwtpLWEgrAAAA
-			DRuxFWRlcm9zaWVyLnNwYXJzZWJ1bmRsZQAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANG7LDx9ApAAAA
-			AAAAAAD/////AAAJIAAAAAAAAAAAAAAAAAAAAAkuZGVyb3NpZXIA
-			ABAACAAAwtqtyAAAABEACAAAw8hAqQAAAAEACAANG7EADRuvAAIA
-			Mk1hY2ludG9zaCBIRDpVc2VyczouZGVyb3NpZXI6ZGVyb3NpZXIu
-			c3BhcnNlYnVuZGxlAA4ALAAVAGQAZQByAG8AcwBpAGUAcgAuAHMA
-			cABhAHIAcwBlAGIAdQBuAGQAbABlAA8AGgAMAE0AYQBjAGkAbgB0
-			AG8AcwBoACAASABEABIAJVVzZXJzLy5kZXJvc2llci9kZXJvc2ll
-			ci5zcGFyc2VidW5kbGUAABMAAS8A//8AAAAVAAIAD///AAA=
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/derosier/Desktop/Job%20Search%202009/Portfolio/Programming/PD/</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
-	</array>
+	<array/>
 	<key>FileFilterID:derosier</key>
 	<integer>0</integer>
 	<key>OpenDocuments:derosier</key>
@@ -81,6 +48,38 @@
 		<dict>
 			<key>AliasData</key>
 			<data>
+			AAAAAALkAAIAAAhkZXJvc2llcgAAAAAAAAAAAAAAAAAAAAAAAADD
+			x9AqSCsABQApaX4JdmVyc2lvbi5oAAAAAAAAAAAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAClq
+			HMHrhEtURVhUAAAAAP////8AAA0CAAAAAAAAAAAAAAAAAAAACWRu
+			cy1zcG9vZgAAEAAIAADDyECqAAAAEQAIAADB6/TLAAAAAQAIAClp
+			fgABNjkAAgAlZGVyb3NpZXI6cHJvamVjdHM6ZG5zLXNwb29mOnZl
+			cnNpb24uaAAADgAUAAkAdgBlAHIAcwBpAG8AbgAuAGgADwASAAgA
+			ZABlAHIAbwBzAGkAZQByABIAHS9wcm9qZWN0cy9kbnMtc3Bvb2Yv
+			dmVyc2lvbi5oAAATAA8vVXNlcnMvZGVyb3NpZXIAABQBgAAAAAAB
+			gAACAAEMTWFjaW50b3NoIEhEAAAAAAAAAAAAAAAAAAAAwtpLWEgr
+			AAAADRuxFWRlcm9zaWVyLnNwYXJzZWJ1bmRsZQAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANG7LDx9Ap
+			AAAAAAAAAAD/////AAAJIAAAAAAAAAAAAAAAAAAAAAkuZGVyb3Np
+			ZXIAABAACAAAwtqtyAAAABEACAAAw8hAqQAAAAEACAANG7EADRuv
+			AAIAMk1hY2ludG9zaCBIRDpVc2VyczouZGVyb3NpZXI6ZGVyb3Np
+			ZXIuc3BhcnNlYnVuZGxlAA4ALAAVAGQAZQByAG8AcwBpAGUAcgAu
+			AHMAcABhAHIAcwBlAGIAdQBuAGQAbABlAA8AGgAMAE0AYQBjAGkA
+			bgB0AG8AcwBoACAASABEABIAJVVzZXJzLy5kZXJvc2llci9kZXJv
+			c2llci5zcGFyc2VidW5kbGUAABMAAS8A//8AAAAVAAIAD///AAA=
+			</data>
+			<key>FileURL</key>
+			<string>file://localhost/Users/derosier/projects/dns-spoof/version.h</string>
+			<key>RelativePath</key>
+			<string>./version.h</string>
+			<key>TypeID</key>
+			<string>_CFileLocator</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>AliasData</key>
+			<data>
 			AAAAAALeAAIAAAhkZXJvc2llcgAAAAAAAAAAAAAAAAAAAAAAAADD
 			x9AqSCsABQApaX4ITWFrZWZpbGUAAAAAAAAAAAAAAAAAAAAAAAAA
 			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAClp
@@ -110,40 +109,6 @@
 			<key>Version</key>
 			<integer>1</integer>
 		</dict>
-		<dict>
-			<key>AliasData</key>
-			<data>
-			AAAAAAMmAAIAAAhkZXJvc2llcgAAAAAAAAAAAAAAAAAAAAAAAADD
-			x9AqSCsABQAiREQKZGV2bW9uLmNwcAAAAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACJE
-			18Ri6mpURVhUAAAAAP////8AAA0CAAAAAAAAAAAAAAAAAAAAAlBE
-			ABAACAAAw8hAqgAAABEACAAAxGNM2gAAAAEAFAAiREQAIkPmACDK
-			5gAfQG8AAAKTAAIARGRlcm9zaWVyOkRlc2t0b3A6Sm9iIFNlYXJj
-			aCAyMDA5OlBvcnRmb2xpbzpQcm9ncmFtbWluZzpQRDpkZXZtb24u
-			Y3BwAA4AFgAKAGQAZQB2AG0AbwBuAC4AYwBwAHAADwASAAgAZABl
-			AHIAbwBzAGkAZQByABIAPC9EZXNrdG9wL0pvYiBTZWFyY2ggMjAw
-			OS9Qb3J0Zm9saW8vUHJvZ3JhbW1pbmcvUEQvZGV2bW9uLmNwcAAT
-			AA8vVXNlcnMvZGVyb3NpZXIAABQBgAAAAAABgAACAAEMTWFjaW50
-			b3NoIEhEAAAAAAAAAAAAAAAAAAAAwtpLWEgrAAAADRuxFWRlcm9z
-			aWVyLnNwYXJzZWJ1bmRsZQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAAAAAAAAANG7LDx9ApAAAAAAAAAAD/////
-			AAAJIAAAAAAAAAAAAAAAAAAAAAkuZGVyb3NpZXIAABAACAAAwtqt
-			yAAAABEACAAAw8hAqQAAAAEACAANG7EADRuvAAIAMk1hY2ludG9z
-			aCBIRDpVc2VyczouZGVyb3NpZXI6ZGVyb3NpZXIuc3BhcnNlYnVu
-			ZGxlAA4ALAAVAGQAZQByAG8AcwBpAGUAcgAuAHMAcABhAHIAcwBl
-			AGIAdQBuAGQAbABlAA8AGgAMAE0AYQBjAGkAbgB0AG8AcwBoACAA
-			SABEABIAJVVzZXJzLy5kZXJvc2llci9kZXJvc2llci5zcGFyc2Vi
-			dW5kbGUAABMAAS8A//8AAAAVAAIAD///AAA=
-			</data>
-			<key>FileURL</key>
-			<string>file://localhost/Users/derosier/Desktop/Job%20Search%202009/Portfolio/Programming/PD/devmon.cpp</string>
-			<key>RelativePath</key>
-			<string>../../Desktop/Job Search 2009/Portfolio/Programming/PD/devmon.cpp</string>
-			<key>TypeID</key>
-			<string>_CFileLocator</string>
-			<key>Version</key>
-			<integer>1</integer>
-		</dict>
 	</array>
 	<key>ShowInvisibles:derosier</key>
 	<false/>
@@ -152,8 +117,8 @@
 	<key>ToolbarVisible:derosier</key>
 	<true/>
 	<key>ViewSplitterPosition:derosier</key>
-	<real>0.25895953178405762</real>
+	<real>0.21853658556938171</real>
 	<key>WindowFrame:derosier:displays([(0, 0), (1680, 1050)]:[(1680, 0), (1440, 900)])</key>
-	<string>rect(66,22,1046,887)</string>
+	<string>rect(66,22,984,1047)</string>
 </dict>
 </plist>
