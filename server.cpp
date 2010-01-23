@@ -16,7 +16,7 @@
 //    Main server module for dns-spoof
 //
 //****************************************************************************
-//  $Id:$
+//  $Id$
 //****************************************************************************
 
 //****************************************************************************
@@ -24,7 +24,12 @@
 // Add all #includes here
 //
 //****************************************************************************
+#include "server.h"
 
+#ifdef DEBUG_BUILD
+#include <iostream>
+using namespace std;
+#endif
 //****************************************************************************
 //  Defines section
 // Add all #defines or consts here
@@ -48,5 +53,69 @@
 // Description: detailed description 
 // Notes: restrictions, odd modes
 //****************************************************************************
+CServer::CServer( int Port ) : mPort(Port), mSocket(0)
+{
+}
+
+CServer::~CServer()
+{
+   if( mSocket )
+   {
+      mSocket->Close();
+      delete mSocket;
+   }
+}
 
 
+
+void CServer::ServerTask( void )
+{
+
+   #ifdef DEBUG_BUILD
+      cout << "Starting server on port " << mPort << endl;
+   #endif   
+
+   // Create our UDP socket   
+   mSocket = new CSocket;
+   
+   if( !mSocket->OpenUDP( mPort ) )
+   {
+      // Error
+      #ifdef DEBUG_BUILD
+         cerr << "Error: failed to open UDP socket on port " << mPort << endl;
+      #endif   
+      return;      
+   }
+   
+   // Get messages and process them
+   while( 1 )
+   {
+      int RecSize = 0;
+      CUDPMessage Msg;
+      
+      // Attempt to get a message.  This will block untill an error or msg recieved.
+      try
+      {
+         RecSize = mSocket->RecieveUDP( Msg );
+      }
+      catch(...)
+      {
+         // Error
+         #ifdef DEBUG_BUILD
+            cerr << "Error: socket recieve " << endl;
+         #endif   
+      }
+      
+      // Got a message, process it
+      if( RecSize > 0 )
+      {
+         ProcessMsg( Msg );
+      }
+   }
+}
+
+
+void CServer::ProcessMsg( CUDPMessage Msg )
+{
+   Msg.DumpHex();
+}

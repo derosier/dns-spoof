@@ -74,6 +74,7 @@ void Error( const string & ErrStr );
 //****************************************************************************
 int main( int argc, char * argv[] )
 {
+   int Port = 53;
    ///////////////////////////////////
    // Process Commandline
    ///////////////////////////////////
@@ -81,9 +82,10 @@ int main( int argc, char * argv[] )
    // Define the options structure 
    static struct option longopt[] =
    {
-      {"console",no_argument,NULL,'c'},
-      {"help",no_argument,NULL,'h'},
-      {"version",no_argument,NULL,'v'},
+      {"port", required_argument, NULL, 'p'},
+      {"console", no_argument, NULL, 'c'},
+      {"help", no_argument, NULL, 'h'},
+      {"version", no_argument, NULL, 'v'},
       {NULL, 0, NULL, 0}
    };
    
@@ -104,10 +106,16 @@ int main( int argc, char * argv[] )
    // Process comandline options
    int c;
    int optidx=0;
-   while ((c=getopt_long(argc,argv,"cvh",longopt,&optidx)) != -1)
+   while ((c=getopt_long(argc,argv,"p:cvh",longopt,&optidx)) != -1)
    {
       switch(c)
       {
+         case 'p':
+            Port = atoi(optarg); 
+#ifdef DEBUG_BUILD
+            cout << "Using port: " << Port << endl;
+#endif         
+            break;
          // Console mode -> don't daemonize
          case 'c':
 #ifdef DEBUG_BUILD
@@ -164,11 +172,10 @@ int main( int argc, char * argv[] )
    ///////////////////////////////////
    // Run main server
    ///////////////////////////////////
-   std::cout << "Hello, this is " << argv[0] << std::endl;
-   while(1)
-   {
-   }
+   CServer SpoofServer( Port );
    
+   SpoofServer.RunServer();
+
    ExitClean( EXIT_SUCCESS );
 }
 

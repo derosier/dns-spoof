@@ -15,6 +15,8 @@
 		<string>4645710D-0431-469F-8B81-82A756B74817</string>
 		<string>27D65521-2157-4720-9867-EB62B1A71AA2</string>
 		<string>04575BF8-20F6-4EDF-B9BC-B2BF0D52547E</string>
+		<string>43BE8C89-5170-481B-BFD9-2C7C7F679824</string>
+		<string>9D839043-1BFD-479B-BA44-BC0C16DF62BA</string>
 	</array>
 	<key>ProjectItems</key>
 	<dict>
@@ -194,6 +196,35 @@
 			<string>socket.cpp</string>
 			<key>ItemType</key>
 			<string>FileReference</string>
+		</dict>
+		<key>43BE8C89-5170-481B-BFD9-2C7C7F679824</key>
+		<dict>
+			<key>ItemData</key>
+			<dict>
+				<key>AliasData</key>
+				<data>
+				AAAAAAE+AAIAAQxNYWNpbnRvc2ggSEQAAAAAAAAAAAAA
+				AAAAAADC2ktYSCsAAAACYoUHbmV0aW5ldAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAJrIcMxpBIAAAAAAAAAAP//
+				//8AAAkgAAAAAAAAAAAAAAAAAAAAB2luY2x1ZGUAABAA
+				CAAAwtqtyAAAABEACAAAwzIGggAAAAEACAACYoUAAdM0
+				AAIAIE1hY2ludG9zaCBIRDp1c3I6aW5jbHVkZTpuZXRp
+				bmV0AA4AEAAHAG4AZQB0AGkAbgBlAHQADwAaAAwATQBh
+				AGMAaQBuAHQAbwBzAGgAIABIAEQAEgATdXNyL2luY2x1
+				ZGUvbmV0aW5ldAAAEwABLwD//wAA
+				</data>
+				<key>FileURL</key>
+				<string>file://localhost/usr/include/netinet/</string>
+				<key>TypeID</key>
+				<string>_CFileLocator</string>
+				<key>Version</key>
+				<integer>1</integer>
+			</dict>
+			<key>ItemName</key>
+			<string>netinet</string>
+			<key>ItemType</key>
+			<string>FolderReference</string>
 		</dict>
 		<key>4645710D-0431-469F-8B81-82A756B74817</key>
 		<dict>
@@ -414,6 +445,35 @@
 			<string>server.h</string>
 			<key>ItemType</key>
 			<string>FileReference</string>
+		</dict>
+		<key>9D839043-1BFD-479B-BA44-BC0C16DF62BA</key>
+		<dict>
+			<key>ItemData</key>
+			<dict>
+				<key>AliasData</key>
+				<data>
+				AAAAAAEyAAIAAQxNYWNpbnRvc2ggSEQAAAAAAAAAAAAA
+				AAAAAADC2ktYSCsAAAACYoUEYXJwYQAAAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAJtX8MsROcAAAAAAAAAAP//
+				//8AAAkgAAAAAAAAAAAAAAAAAAAAB2luY2x1ZGUAABAA
+				CAAAwtqtyAAAABEACAAAwyynVwAAAAEACAACYoUAAdM0
+				AAIAHU1hY2ludG9zaCBIRDp1c3I6aW5jbHVkZTphcnBh
+				AAAOAAoABABhAHIAcABhAA8AGgAMAE0AYQBjAGkAbgB0
+				AG8AcwBoACAASABEABIAEHVzci9pbmNsdWRlL2FycGEA
+				EwABLwD//wAA
+				</data>
+				<key>FileURL</key>
+				<string>file://localhost/usr/include/arpa/</string>
+				<key>TypeID</key>
+				<string>_CFileLocator</string>
+				<key>Version</key>
+				<integer>1</integer>
+			</dict>
+			<key>ItemName</key>
+			<string>arpa</string>
+			<key>ItemType</key>
+			<string>FolderReference</string>
 		</dict>
 		<key>B032F39C-8DDF-4BBB-9C90-D8E44F6A6768</key>
 		<dict>

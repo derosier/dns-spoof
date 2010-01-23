@@ -18,7 +18,7 @@
 // function here).
 //
 //****************************************************************************
-//  $Id:$
+//  $Id$
 //****************************************************************************
 
 // Change MODULENAME_H_ to match your module name.
@@ -43,6 +43,9 @@
 // Add all #includes here
 //
 //****************************************************************************
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
 
 //****************************************************************************
 //  Defines section
@@ -63,6 +66,43 @@
 // Define the module's class (or classes) here.
 //
 //****************************************************************************
+class CUDPMessage 
+{
+public:
+   enum {MAX_MSG_SIZE = 512}; // UDP Messages are limited to 512 bytes
+   char mMsgData[MAX_MSG_SIZE];
+   size_t mSize;
+   sockaddr mSenderAddr;
+   socklen_t mSenderAddrLen;
+   
+   void DumpHex();
+};
+
+
+class CSocket
+{
+public:
+   CSocket();
+   virtual ~CSocket();
+   
+   virtual void Close(void);
+   virtual bool OpenUDP( int Port );
+   
+   virtual int RecieveUDP( CUDPMessage & Msg );
+
+private:
+
+   struct sockaddr_in mAddr;
+
+   int mDomain;
+   int mType;
+   int mPort;
+
+   int mFDSocket;
+   
+   bool mSockOpen;
+};
+
 
 // Don't touch this last line.  Nothing should be 
 // entered below here.

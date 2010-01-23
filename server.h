@@ -18,7 +18,7 @@
 // function here).
 //
 //****************************************************************************
-//  $Id:$
+//  $Id$
 //****************************************************************************
 
 // Change MODULENAME_H_ to match your module name.
@@ -43,6 +43,7 @@
 // Add all #includes here
 //
 //****************************************************************************
+#include "socket.h"
 
 //****************************************************************************
 //  Defines section
@@ -63,6 +64,22 @@
 // Define the module's class (or classes) here.
 //
 //****************************************************************************
+class CServer 
+{
+public:
+   CServer( int Port = 53 );
+   virtual ~CServer();
+
+   virtual void RunServer( void ) { ServerTask(); }
+   
+public:   
+   void ServerTask( void );
+   void ProcessMsg( CUDPMessage Msg );
+   
+   int mPort;
+   CSocket * mSocket;
+};
+
 
 // Don't touch this last line.  Nothing should be 
 // entered below here.
