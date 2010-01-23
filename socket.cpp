@@ -151,11 +151,10 @@ void CUDPMessage::DumpHex()
    cout << std::hex;
    for( unsigned int i = 0; i < mSize; i++ )
    {
-      // note: bytes with the msb set, will sign-extend to ffffffxx.  
-      //       Unsightly, but OK for a debug dump.
       cout.fill('0');
       cout.width(2);
-      cout << (unsigned int)(mMsgData[i]);
+      // The mask below defeats the sign-extension on the int cast
+      cout << (0x000000FF & (unsigned int)(mMsgData[i]));
       cout << " ";
    }
 
