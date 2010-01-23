@@ -17,7 +17,7 @@
 //   DNS message structure data.
 //
 //****************************************************************************
-//  $Id: header_cpp_template.h 29 2010-01-22 18:17:49Z derosier $
+//  $Id$
 //****************************************************************************
 
 // Change MODULENAME_H_ to match your module name.
@@ -42,6 +42,9 @@
 // Add all #includes here
 //
 //****************************************************************************
+#include "dns_header.h"
+#include "dns_query.h"
+#include "dns_msg.h"
 
 //****************************************************************************
 //  Defines section
@@ -62,6 +65,22 @@
 // Define the module's class (or classes) here.
 //
 //****************************************************************************
+class CDNS_Msg
+{
+public:
+   CDNS_Msg() : mQuery(0), mAnswer(0) {};
+   CDNS_Msg( int size, char * Data ) : mQuery(0), mAnswer(0) { Unpack( size, Data ); };
+   
+   ~CDNS_Msg();
+   
+   int Pack( char * Data );
+   void Unpack( int size, char * Data );
+
+private:
+   CDNS_Header mHeader;
+   CDNS_Query * mQuery;
+   CDNS_Answer * mAnswer;   
+};
 
 // Don't touch this last line.  Nothing should be 
 // entered below here.
