@@ -45,6 +45,9 @@
 #include "dns_header.h"
 #include "dns_query.h"
 #include "dns_msg.h"
+#include "dns_defs.h"
+#include "dns_answer.h"
+#include <iostream>
 
 //****************************************************************************
 //  Defines section
@@ -69,12 +72,14 @@ class CDNS_Msg
 {
 public:
    CDNS_Msg() : mQuery(0), mAnswer(0) {};
-   CDNS_Msg( int size, char * Data ) : mQuery(0), mAnswer(0) { Unpack( size, Data ); };
+   CDNS_Msg( uint8_t * Data ) : mQuery(0), mAnswer(0) { Unpack( Data ); };
    
    ~CDNS_Msg();
    
-   int Pack( char * Data );
-   void Unpack( int size, char * Data );
+   int Pack( uint8_t * Data );
+   void Unpack( uint8_t * Data );
+
+   friend std::ostream & operator<<( std::ostream & s, const CDNS_Msg & Msg);
 
 private:
    CDNS_Header mHeader;

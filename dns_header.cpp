@@ -24,6 +24,8 @@
 // Add all #includes here
 //
 //****************************************************************************
+#include "dns_header.h"
+using namespace std;
 
 //****************************************************************************
 //  Defines section
@@ -48,5 +50,73 @@
 // Description: detailed description 
 // Notes: restrictions, odd modes
 //****************************************************************************
+CDNS_Header::CDNS_Header( uint8_t * Data )
+ : mID(0), mFlags(0), mQDCount(0), mANCount(0), mNSCount(0), mARCount(0) 
+{
+   Unpack( Data );
+}
+
+
+int CDNS_Header::Pack( uint8_t * Data )
+{
+   uint16_t * Ptr = (uint16_t *)Data;
+   *Ptr++ = mID;
+   *Ptr++ = mFlags;
+   *Ptr++ = mQDCount;
+   *Ptr++ = mANCount;
+   *Ptr++ = mNSCount;
+   *Ptr++ = mARCount;
+
+   return 12;  // Size of a DNS header
+}
+
+
+int CDNS_Header::Unpack( uint8_t * Data )
+{
+   uint16_t * Ptr = (uint16_t *)Data;
+   mID = *Ptr++;
+   mFlags = *Ptr++;
+   mQDCount = *Ptr++;
+   mANCount = *Ptr++;
+   mNSCount = *Ptr++;
+   mARCount = *Ptr++;
+   
+   return 12;  // Size of a DNS header
+}
+
+ostream & operator<<( ostream & s, const CDNS_Header & Hdr)
+{
+   char oldfill = s.fill();
+   s.fill('0');
+
+   s << "Header" << endl;
+   // We use masks below to defeat the sign-extension on the int cast
+   s << std::hex;
+   s << "  Id: ";
+   s.width(4);
+   s << (0x0000FFFF & Hdr.mID);
+   s << " Flags: ";
+   s.width(4);
+   s << (0x0000FFFF & Hdr.mFlags);
+   s << " QDCount: ";
+   s.width(4);
+   s << (0x0000FFFF & Hdr.mQDCount);
+   s << " ANCount: ";
+   s.width(4);
+   s << (0x0000FFFF & Hdr.mANCount);
+   s << " NSCount: ";
+   s.width(4);
+   s << (0x0000FFFF & Hdr.mNSCount);
+   s << " ARCount: ";
+   s.width(4);
+   s << (0x0000FFFF & Hdr.mARCount);
+
+   s << endl;
+   s.fill(oldfill);  
+
+   return s;
+}
+
+
 
 

@@ -42,6 +42,9 @@
 // Add all #includes here
 //
 //****************************************************************************
+#include "dns_defs.h"
+#include <string>
+#include <iostream>
 
 //****************************************************************************
 //  Defines section
@@ -62,6 +65,36 @@
 // Define the module's class (or classes) here.
 //
 //****************************************************************************
+class CDNS_Query 
+{
+public:
+   CDNS_Query() : mQNameSize(0), mQType(0), mQClass(0) {};
+   CDNS_Query( uint8_t * Data ) { Unpack( Data ); };
+   
+   ~CDNS_Query() {};
+   
+   int Pack( uint8_t * Data );
+   int Unpack( uint8_t * Data );
+   
+   tDNSType QType( void ) { return mQType; };
+   void QType( tDNSType Type ) { mQType = Type; };
+   
+   tDNSClass QClass( void ) { return mQClass; };
+   void QClass( tDNSClass Class ) { mQClass = Class; };
+   
+   int QNameSize( void ) { return mQNameSize; };
+   int GetQName( uint8_t * QName );
+   void SetQName( uint8_t * QName );
+   
+   friend std::ostream & operator<<( std::ostream & s, const CDNS_Query & Query );
+
+private:
+   int mQNameSize;
+   uint8_t mQName[DNS_NAME_MAX];
+   tDNSType mQType;
+   tDNSClass mQClass;
+};
+
 
 // Don't touch this last line.  Nothing should be 
 // entered below here.

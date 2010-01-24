@@ -16,6 +16,10 @@
 // Module Description:
 //   Structure for DNS answer section.
 //
+// NOTE: dns-spoof only requires returning an IP address.  Thus, CDNS_Answer
+//       is built to only support this type of RDATA.  It is critical to
+//       change this if it this class is ever to be used in any general 
+//       purpose DNS application.
 //****************************************************************************
 //  $Id$
 //****************************************************************************
@@ -42,6 +46,8 @@
 // Add all #includes here
 //
 //****************************************************************************
+#include "dns_defs.h"
+#include <iostream>
 
 //****************************************************************************
 //  Defines section
@@ -62,6 +68,46 @@
 // Define the module's class (or classes) here.
 //
 //****************************************************************************
+class CDNS_Answer 
+{
+public:
+   CDNS_Answer() : mQNameSize(0), mQType(0), mQClass(0) {};
+   ~CDNS_Answer() {};
+   
+   int Pack( uint8_t * Data );
+   int Unpack( uint8_t * Data );
+   
+   tDNSType QType( void ) { return mQType; };
+   void QType( tDNSType Type ) { mQType = Type; };
+   
+   tDNSClass QClass( void ) { return mQClass; };
+   void QClass( tDNSClass Class ) { mQClass = Class; };
+   
+   uint32_t TTL( void ) { return mTTL; };
+   void TTL( uint32_t ttl ) { mTTL = ttl; };
+   
+   uint16_t RDLength( void ) { return mRDLength; };
+   void RDLength( uint16_t RDL ) { mRDLength = RDL; };
+   
+   uint32_t RData( void ) { return *((uint32_t *)mRData); };
+   void RData( uint32_t RD ) { *((uint32_t *)mRData) = RD; };
+   
+   int NameSize( void ) { return mQNameSize; };
+   int GetName( uint8_t * Name );
+   void SetName( uint8_t * Name );
+
+   friend std::ostream & operator<<( std::ostream & s, const CDNS_Answer & Answer);
+
+private:
+   int mQNameSize;
+   uint8_t mQName[DNS_NAME_MAX];
+   tDNSType mQType;
+   tDNSClass mQClass;
+   uint32_t mTTL;
+   uint16_t mRDLength;
+   uint8_t mRData[4];  // Note, we only support IP address for dns-spoof
+
+};
 
 // Don't touch this last line.  Nothing should be 
 // entered below here.
