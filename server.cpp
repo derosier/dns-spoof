@@ -25,6 +25,7 @@
 //
 //****************************************************************************
 #include "server.h"
+#include "dns_msg.h"
 
 #ifdef DEBUG_BUILD
 #include <iostream>
@@ -118,4 +119,9 @@ void CServer::ServerTask( void )
 void CServer::ProcessMsg( CUDPMessage Msg )
 {
    Msg.DumpHex();
+   
+   CDNS_Msg InDNSMsg( Msg.mMsgData );
+   cout << InDNSMsg;
+   cout.flush();
+   
 }

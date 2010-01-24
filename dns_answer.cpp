@@ -53,6 +53,47 @@ using namespace std;
 //****************************************************************************
 int CDNS_Answer::Pack( uint8_t * Data )
 {
+   if( mQNameSize == 0 )
+     return 0;
+     
+   uint8_t * DataPtr = Data;
+   int Count = 0;
+   
+   // First part is the name, which is made of chunks of an 8bit length, followed
+   // by that number of bytes.  End is a 0 length byte.  Conviently we know the size 
+   // we're storing.
+   memcpy( DataPtr, mQName, mQNameSize );
+   Count += mQNameSize;
+   DataPtr += mQNameSize;
+   
+   // Do type and class, each are 2 bytes
+   *((uint16_t *)(DataPtr)) = htons(mQType);
+   DataPtr += 2;
+   Count += 2;
+   *((uint16_t *)(DataPtr)) = htons(mQClass);
+   DataPtr += 2;
+   Count += 2;
+
+   // TTL is next, 4 bytes
+   *((uint32_t *)(DataPtr)) = htonl(mTTL);
+   DataPtr += 4;
+   Count += 4;
+   
+   // RDLength, 2 bytes
+   *((uint16_t *)(DataPtr)) = htons(mRDLength);
+   DataPtr += 2;
+   Count += 2;
+
+   // RData
+   memcpy( DataPtr, mRData, mRDLength );
+   Count += mRDLength;
+   
+   return Count;
+}
+
+
+int CDNS_Answer::Unpack( uint8_t * Data )
+{
    uint8_t * DataPtr = Data;
    uint8_t * QNamePtr = mQName;
    int Count = 0;
@@ -74,20 +115,20 @@ int CDNS_Answer::Pack( uint8_t * Data )
    DataPtr++;
    
    // Do type and class, each are 2 bytes
-   mQType = *((uint16_t *)(DataPtr));
+   mQType = ntohs(*((uint16_t *)(DataPtr)));
    DataPtr += 2;
    Count += 2;
-   mQClass = *((uint16_t *)(DataPtr));
+   mQClass = ntohs(*((uint16_t *)(DataPtr)));
    DataPtr += 2;
    Count += 2;
    
    // TTL is next, 4 bytes
-   mTTL = *((uint32_t *)(DataPtr));
+   mTTL = ntohl(*((uint32_t *)(DataPtr)));
    DataPtr += 4;
    Count += 4;
    
    // RDLength, 2 bytes
-   mRDLength = *((uint16_t *)(DataPtr));
+   mRDLength = ntohs(*((uint16_t *)(DataPtr)));
    DataPtr += 2;
    Count += 2;
 
@@ -99,45 +140,6 @@ int CDNS_Answer::Pack( uint8_t * Data )
    return Count;
 }
 
-int CDNS_Answer::Unpack( uint8_t * Data )
-{
-   if( mQNameSize == 0 )
-     return 0;
-     
-   uint8_t * DataPtr = Data;
-   int Count = 0;
-   
-   // First part is the name, which is made of chunks of an 8bit length, followed
-   // by that number of bytes.  End is a 0 length byte.  Conviently we know the size 
-   // we're storing.
-   memcpy( DataPtr, mQName, mQNameSize );
-   Count += mQNameSize;
-   DataPtr += mQNameSize;
-   
-   // Do type and class, each are 2 bytes
-   *((uint16_t *)(DataPtr)) = mQType;
-   DataPtr += 2;
-   Count += 2;
-   *((uint16_t *)(DataPtr)) = mQClass;
-   DataPtr += 2;
-   Count += 2;
-
-   // TTL is next, 4 bytes
-   *((uint32_t *)(DataPtr)) = mTTL;
-   DataPtr += 4;
-   Count += 4;
-   
-   // RDLength, 2 bytes
-   *((uint16_t *)(DataPtr)) = mRDLength;
-   DataPtr += 2;
-   Count += 2;
-
-   // RData
-   memcpy( DataPtr, mRData, mRDLength );
-   Count += mRDLength;
-   
-   return Count;
-}
 
 int CDNS_Answer::GetName( uint8_t * Name )
 {

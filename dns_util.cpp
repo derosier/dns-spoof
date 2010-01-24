@@ -63,7 +63,7 @@ const string Name( const uint8_t * NamePtr, const int Size )
    
    // First part is the name, which is made of chunks of an 8bit length, followed
    // by that number of bytes.  End is a 0 length byte.
-   while( !(*NamePtr) )
+   while( *NamePtr )
    {
       string Part( (char *)(NamePtr+1), *NamePtr );
       N += Part + ".";

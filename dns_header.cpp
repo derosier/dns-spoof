@@ -60,12 +60,12 @@ CDNS_Header::CDNS_Header( uint8_t * Data )
 int CDNS_Header::Pack( uint8_t * Data )
 {
    uint16_t * Ptr = (uint16_t *)Data;
-   *Ptr++ = mID;
-   *Ptr++ = mFlags;
-   *Ptr++ = mQDCount;
-   *Ptr++ = mANCount;
-   *Ptr++ = mNSCount;
-   *Ptr++ = mARCount;
+   *Ptr++ = htons(mID);
+   *Ptr++ = htons(mFlags);
+   *Ptr++ = htons(mQDCount);
+   *Ptr++ = htons(mANCount);
+   *Ptr++ = htons(mNSCount);
+   *Ptr++ = htons(mARCount);
 
    return 12;  // Size of a DNS header
 }
@@ -74,12 +74,12 @@ int CDNS_Header::Pack( uint8_t * Data )
 int CDNS_Header::Unpack( uint8_t * Data )
 {
    uint16_t * Ptr = (uint16_t *)Data;
-   mID = *Ptr++;
-   mFlags = *Ptr++;
-   mQDCount = *Ptr++;
-   mANCount = *Ptr++;
-   mNSCount = *Ptr++;
-   mARCount = *Ptr++;
+   mID = ntohs(*Ptr++);
+   mFlags = ntohs(*Ptr++);
+   mQDCount = ntohs(*Ptr++);
+   mANCount = ntohs(*Ptr++);
+   mNSCount = ntohs(*Ptr++);
+   mARCount = ntohs(*Ptr++);
    
    return 12;  // Size of a DNS header
 }

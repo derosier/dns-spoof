@@ -55,39 +55,6 @@ using namespace std;
 //****************************************************************************
 int CDNS_Query::Pack( uint8_t * Data )
 {
-   uint8_t * DataPtr = Data;
-   uint8_t * QNamePtr = mQName;
-   int Count = 0;
-   
-   // First part is the name, which is made of chunks of an 8bit length, followed
-   // by that number of bytes.  End is a 0 length byte.
-   while( !(*DataPtr) )
-   {
-      int CopyLen = (*DataPtr) + 1;
-      memcpy( QNamePtr, DataPtr, CopyLen ); // copy the length also!
-      DataPtr += CopyLen; // Don't forget the length byte
-      QNamePtr += CopyLen;
-      Count += CopyLen;
-   }
-   // append the 0 length byte to the end.
-   *QNamePtr = 0;
-   Count++;
-   mQNameSize = Count;
-   DataPtr++;
-   
-   // Do type and class, each are 2 bytes
-   mQType = *((uint16_t *)(DataPtr));
-   DataPtr += 2;
-   Count += 2;
-   mQClass = *((uint16_t *)(DataPtr));
-   DataPtr += 2;
-   Count += 2;
-   
-   return Count;
-}
-
-int CDNS_Query::Unpack( uint8_t * Data )
-{
    if( mQNameSize == 0 )
      return 0;
      
@@ -102,15 +69,49 @@ int CDNS_Query::Unpack( uint8_t * Data )
    DataPtr += mQNameSize;
    
    // Do type and class, each are 2 bytes
-   *((uint16_t *)(DataPtr)) = mQType;
+   *((uint16_t *)(DataPtr)) = htons(mQType);
    DataPtr += 2;
    Count += 2;
-   *((uint16_t *)(DataPtr)) = mQClass;
+   *((uint16_t *)(DataPtr)) = htons(mQClass);
    DataPtr += 2;
    Count += 2;
    
    return Count;
 }
+
+int CDNS_Query::Unpack( uint8_t * Data )
+{
+   uint8_t * DataPtr = Data;
+   uint8_t * QNamePtr = mQName;
+   int Count = 0;
+   
+   // First part is the name, which is made of chunks of an 8bit length, followed
+   // by that number of bytes.  End is a 0 length byte.
+   while( *DataPtr )
+   {
+      int CopyLen = (*DataPtr) + 1;
+      memcpy( QNamePtr, DataPtr, CopyLen ); // copy the length also!
+      DataPtr += CopyLen; // Don't forget the length byte
+      QNamePtr += CopyLen;
+      Count += CopyLen;
+   }
+   // append the 0 length byte to the end.
+   *QNamePtr = 0;
+   Count++;
+   mQNameSize = Count;
+   DataPtr++;
+   
+   // Do type and class, each are 2 bytes
+   mQType = ntohs(*((uint16_t *)(DataPtr)));
+   DataPtr += 2;
+   Count += 2;
+   mQClass = ntohs(*((uint16_t *)(DataPtr)));
+   DataPtr += 2;
+   Count += 2;
+   
+   return Count;
+}
+
    
 int CDNS_Query::GetQName( uint8_t * QName )
 {
@@ -130,7 +131,7 @@ void CDNS_Query::SetQName( uint8_t * QName )
    
    // First part is the name, which is made of chunks of an 8bit length, followed
    // by that number of bytes.  End is a 0 length byte.
-   while( !(*DataPtr) )
+   while( *DataPtr )
    {
       int CopyLen = (*DataPtr) + 1;
       memcpy( QNamePtr, DataPtr, CopyLen ); // copy the length also!

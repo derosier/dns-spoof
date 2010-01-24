@@ -70,7 +70,7 @@ class CUDPMessage
 {
 public:
    enum {MAX_MSG_SIZE = 512}; // UDP Messages are limited to 512 bytes
-   char mMsgData[MAX_MSG_SIZE];
+   uint8_t mMsgData[MAX_MSG_SIZE];
    size_t mSize;
    sockaddr mSenderAddr;
    socklen_t mSenderAddrLen;
