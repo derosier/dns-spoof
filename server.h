@@ -74,7 +74,7 @@ public:
    
 public:   
    void ServerTask( void );
-   void ProcessMsg( CUDPMessage Msg );
+   bool ProcessMsg( CUDPMessage & Msg );
    
    int mPort;
    CSocket * mSocket;

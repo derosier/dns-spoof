@@ -64,7 +64,7 @@ CDNS_Msg::~CDNS_Msg()
       mAnswer = 0;
    }
 }
-   
+
 int CDNS_Msg::Pack( uint8_t * Data )
 {
    int Length = 0;

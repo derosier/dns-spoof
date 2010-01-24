@@ -72,7 +72,7 @@ public:
    CDNS_Query( uint8_t * Data ) { Unpack( Data ); };
    
    ~CDNS_Query() {};
-   
+
    int Pack( uint8_t * Data );
    int Unpack( uint8_t * Data );
    

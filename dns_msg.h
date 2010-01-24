@@ -81,7 +81,6 @@ public:
 
    friend std::ostream & operator<<( std::ostream & s, const CDNS_Msg & Msg);
 
-private:
    CDNS_Header mHeader;
    CDNS_Query * mQuery;
    CDNS_Answer * mAnswer;   

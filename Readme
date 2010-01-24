@@ -46,5 +46,6 @@ dig @localhost -p 9797 textureandlight.com
 Design decisions:
 
 * Chose not to implment mesage compression in the answer.
+
 ==
 Notes and limitations:

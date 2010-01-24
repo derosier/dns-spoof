@@ -110,18 +110,57 @@ void CServer::ServerTask( void )
       // Got a message, process it
       if( RecSize > 0 )
       {
-         ProcessMsg( Msg );
+         if( ProcessMsg( Msg ) )
+         {
+            // Send the message
+         }
       }
    }
 }
 
 
-void CServer::ProcessMsg( CUDPMessage Msg )
+bool CServer::ProcessMsg( CUDPMessage & Msg )
 {
+   bool RetVal = false;
+   
+   cout << "--- new DNS recieved ---" << endl;
    Msg.DumpHex();
    
-   CDNS_Msg InDNSMsg( Msg.mMsgData );
-   cout << InDNSMsg;
+   CDNS_Msg DNSMsg( Msg.mMsgData );
+   cout << DNSMsg;
    cout.flush();
    
+   // Validate our message, must be the right type of request
+   if( DNSMsg.mHeader.QDCount() > 0 )
+   {
+      if( (DNSMsg.mQuery->QType() == DNS_TYPE_A) &&
+          (DNSMsg.mQuery->QClass() == DNS_CLASS_IN) )
+      {
+         // Build our answer from the recieved question
+         DNSMsg.mHeader.Type( RESPONSE );
+         
+         CDNS_Answer * Answer = new CDNS_Answer;
+         DNSMsg.mAnswer = Answer;
+         DNSMsg.mHeader.ANCount(1);
+      
+         DNSMsg.mAnswer->QType(DNS_TYPE_A);
+         DNSMsg.mAnswer->QClass(DNS_CLASS_IN);
+         DNSMsg.mAnswer->TTL(7200);  // 2 hours
+         DNSMsg.mAnswer->RDLength(4);
+         DNSMsg.mAnswer->RData(0x06060606);
+         uint8_t Name[DNS_NAME_MAX];
+         DNSMsg.mQuery->GetQName( Name );
+         DNSMsg.mAnswer->SetName( Name );   
+         
+         // Convert into a format we can send 
+         Msg.mSize = DNSMsg.Pack( Msg.mMsgData );
+
+         cout << "--- Answer to send ---" << endl;
+         cout << DNSMsg;
+         cout.flush();
+         Msg.DumpHex();
+      }
+   }
+   
+   return RetVal;
 }

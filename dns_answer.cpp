@@ -100,7 +100,7 @@ int CDNS_Answer::Unpack( uint8_t * Data )
    
    // First part is the name, which is made of chunks of an 8bit length, followed
    // by that number of bytes.  End is a 0 length byte.
-   while( !(*DataPtr) )
+   while( *DataPtr )
    {
       int CopyLen = (*DataPtr) + 1;
       memcpy( QNamePtr, DataPtr, CopyLen ); // copy the length also!
@@ -159,7 +159,7 @@ void CDNS_Answer::SetName( uint8_t * Name )
    
    // First part is the name, which is made of chunks of an 8bit length, followed
    // by that number of bytes.  End is a 0 length byte.
-   while( !(*DataPtr) )
+   while( *DataPtr )
    {
       int CopyLen = (*DataPtr) + 1;
       memcpy( QNamePtr, DataPtr, CopyLen ); // copy the length also!

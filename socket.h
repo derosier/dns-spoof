@@ -76,6 +76,7 @@ public:
    socklen_t mSenderAddrLen;
    
    void DumpHex();
+   CUDPMessage() : mSize(0), mSenderAddrLen(0) {};
 };
 
 
