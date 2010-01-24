@@ -1,0 +1,50 @@
+==
+Building:
+
+dns-spoof may be built by issuing the command `make`.  It should build on any basic Linux or MacOSX 
+system.  
+
+By default the makefile builds in debug mode.  To build in release, run `make RELEASE=1`.
+
+A standard `make clean` will clean up the directory.
+
+No install target was included as this program is not intended for distubution and use.
+
+A test of the build can be run after building by using the command `make check`.
+
+Typical building and use would be:
+   make
+   make check
+   dns-spoof
+   
+==
+dns-spoof usage
+
+dns-spoof includes a number of command-line switches for ease of use or information printing:
+
+   dns-spoof [options]
+   
+   Options:
+    -c, --console   
+       Don't daemonize, run in console mode.
+    
+    -h, --help      
+       Display usage information.
+    
+    -p port, --port=port      
+       Define the port to bind to.  By default, dns-spoof binds to port 53 for DNS.
+    
+    -v, --version   
+       Display the version information.
+
+Basic use can be as simple as the following:
+./dns-spoof -p 9797
+dig @localhost -p 9797 textureandlight.com
+
+
+==
+Design decisions:
+
+* Chose not to implment mesage compression in the answer.
+==
+Notes and limitations:

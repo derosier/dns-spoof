@@ -15,6 +15,7 @@
 		<string>B032F39C-8DDF-4BBB-9C90-D8E44F6A6768</string>
 		<string>166C54F7-3D01-44E0-A94E-418640DF1CCF</string>
 		<string>4645710D-0431-469F-8B81-82A756B74817</string>
+		<string>E4B6E24E-D596-4A5E-B42C-3632538556F9</string>
 		<string>E3390F1B-FEDF-4F0F-89A1-15F528F7C2AE</string>
 		<string>BEC35553-7DFC-46AD-BAAC-B6C8A1DC483E</string>
 		<string>7A87DC82-0825-4DAE-8626-A3E2FA8DCA45</string>
@@ -23,10 +24,14 @@
 		<string>8EAEE54A-B529-45D1-8EEB-64569B96A976</string>
 		<string>9D4C3BA5-9F8E-4225-983C-28D9A8D3E266</string>
 		<string>49D88493-2547-4903-943D-EDEF597F7DD6</string>
+		<string>877977A2-75DD-4815-B15C-B571E78E9826</string>
+		<string>ABF2419E-42E5-4EA3-BD87-31955870B66A</string>
+		<string>EC70AF05-3AA5-4565-9FD9-E5E2C3DAC130</string>
 		<string>27D65521-2157-4720-9867-EB62B1A71AA2</string>
 		<string>04575BF8-20F6-4EDF-B9BC-B2BF0D52547E</string>
 		<string>43BE8C89-5170-481B-BFD9-2C7C7F679824</string>
 		<string>9D839043-1BFD-479B-BA44-BC0C16DF62BA</string>
+		<string>B07932F7-0CF9-4BCE-81C5-FD3D99929F41</string>
 	</array>
 	<key>ProjectItems</key>
 	<dict>
@@ -632,6 +637,50 @@
 			<key>ItemType</key>
 			<string>FileReference</string>
 		</dict>
+		<key>877977A2-75DD-4815-B15C-B571E78E9826</key>
+		<dict>
+			<key>ItemData</key>
+			<dict>
+				<key>AliasData</key>
+				<data>
+				AAAAAALmAAIAAAhkZXJvc2llcgAAAAAAAAAAAAAAAAAA
+				AAAAAADDx9AqSCsABQApaX4KZG5zX3V0aWwuaAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAACmcbceBKeMAAAAAAAAAAP//
+				//8AAA0CAAAAAAAAAAAAAAAAAAAACWRucy1zcG9vZgAA
+				EAAIAADDyECqAAAAEQAIAADHgZpjAAAAAQAIAClpfgAB
+				NjkAAgAmZGVyb3NpZXI6cHJvamVjdHM6ZG5zLXNwb29m
+				OmRuc191dGlsLmgADgAWAAoAZABuAHMAXwB1AHQAaQBs
+				AC4AaAAPABIACABkAGUAcgBvAHMAaQBlAHIAEgAeL3By
+				b2plY3RzL2Rucy1zcG9vZi9kbnNfdXRpbC5oABMADy9V
+				c2Vycy9kZXJvc2llcgAAFAGAAAAAAAGAAAIAAQxNYWNp
+				bnRvc2ggSEQAAAAAAAAAAAAAAAAAAADC2ktYSCsAAAAN
+				G7EVZGVyb3NpZXIuc3BhcnNlYnVuZGxlAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AA0bssPH0CkAAAAAAAAAAP////8AAAkgAAAAAAAAAAAA
+				AAAAAAAACS5kZXJvc2llcgAAEAAIAADC2q3IAAAAEQAI
+				AADDyECpAAAAAQAIAA0bsQANG68AAgAyTWFjaW50b3No
+				IEhEOlVzZXJzOi5kZXJvc2llcjpkZXJvc2llci5zcGFy
+				c2VidW5kbGUADgAsABUAZABlAHIAbwBzAGkAZQByAC4A
+				cwBwAGEAcgBzAGUAYgB1AG4AZABsAGUADwAaAAwATQBh
+				AGMAaQBuAHQAbwBzAGgAIABIAEQAEgAlVXNlcnMvLmRl
+				cm9zaWVyL2Rlcm9zaWVyLnNwYXJzZWJ1bmRsZQAAEwAB
+				LwD//wAAABUAAgAP//8AAA==
+				</data>
+				<key>FileURL</key>
+				<string>file://localhost/Users/derosier/projects/dns-spoof/dns_util.h</string>
+				<key>RelativePath</key>
+				<string>./dns_util.h</string>
+				<key>TypeID</key>
+				<string>_CFileLocator</string>
+				<key>Version</key>
+				<integer>1</integer>
+			</dict>
+			<key>ItemName</key>
+			<string>dns_util.h</string>
+			<key>ItemType</key>
+			<string>FileReference</string>
+		</dict>
 		<key>8D9B1942-7D92-4283-8AA2-7CF71AA56920</key>
 		<dict>
 			<key>ItemData</key>
@@ -793,6 +842,50 @@
 			<key>ItemType</key>
 			<string>FolderReference</string>
 		</dict>
+		<key>ABF2419E-42E5-4EA3-BD87-31955870B66A</key>
+		<dict>
+			<key>ItemData</key>
+			<dict>
+				<key>AliasData</key>
+				<data>
+				AAAAAALuAAIAAAhkZXJvc2llcgAAAAAAAAAAAAAAAAAA
+				AAAAAADDx9AqSCsABQApaX4MZG5zX3V0aWwuY3BwAAAA
+				AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAACmca8eBKdEAAAAAAAAAAP//
+				//8AAA0CAAAAAAAAAAAAAAAAAAAACWRucy1zcG9vZgAA
+				EAAIAADDyECqAAAAEQAIAADHgZpRAAAAAQAIAClpfgAB
+				NjkAAgAoZGVyb3NpZXI6cHJvamVjdHM6ZG5zLXNwb29m
+				OmRuc191dGlsLmNwcAAOABoADABkAG4AcwBfAHUAdABp
+				AGwALgBjAHAAcAAPABIACABkAGUAcgBvAHMAaQBlAHIA
+				EgAgL3Byb2plY3RzL2Rucy1zcG9vZi9kbnNfdXRpbC5j
+				cHAAEwAPL1VzZXJzL2Rlcm9zaWVyAAAUAYAAAAAAAYAA
+				AgABDE1hY2ludG9zaCBIRAAAAAAAAAAAAAAAAAAAAMLa
+				S1hIKwAAAA0bsRVkZXJvc2llci5zcGFyc2VidW5kbGUA
+				AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAAAAAAAADRuyw8fQKQAAAAAAAAAA/////wAACSAA
+				AAAAAAAAAAAAAAAAAAAJLmRlcm9zaWVyAAAQAAgAAMLa
+				rcgAAAARAAgAAMPIQKkAAAABAAgADRuxAA0brwACADJN
+				YWNpbnRvc2ggSEQ6VXNlcnM6LmRlcm9zaWVyOmRlcm9z
+				aWVyLnNwYXJzZWJ1bmRsZQAOACwAFQBkAGUAcgBvAHMA
+				aQBlAHIALgBzAHAAYQByAHMAZQBiAHUAbgBkAGwAZQAP
+				ABoADABNAGEAYwBpAG4AdABvAHMAaAAgAEgARAASACVV
+				c2Vycy8uZGVyb3NpZXIvZGVyb3NpZXIuc3BhcnNlYnVu
+				ZGxlAAATAAEvAP//AAAAFQACAA///wAA
+				</data>
+				<key>FileURL</key>
+				<string>file://localhost/Users/derosier/projects/dns-spoof/dns_util.cpp</string>
+				<key>RelativePath</key>
+				<string>./dns_util.cpp</string>
+				<key>TypeID</key>
+				<string>_CFileLocator</string>
+				<key>Version</key>
+				<integer>1</integer>
+			</dict>
+			<key>ItemName</key>
+			<string>dns_util.cpp</string>
+			<key>ItemType</key>
+			<string>FileReference</string>
+		</dict>
 		<key>B032F39C-8DDF-4BBB-9C90-D8E44F6A6768</key>
 		<dict>
 			<key>ItemData</key>
@@ -834,6 +927,49 @@
 			</dict>
 			<key>ItemName</key>
 			<string>server.cpp</string>
+			<key>ItemType</key>
+			<string>FileReference</string>
+		</dict>
+		<key>B07932F7-0CF9-4BCE-81C5-FD3D99929F41</key>
+		<dict>
+			<key>ItemData</key>
+			<dict>
+				<key>AliasData</key>
+				<data>
+				AAAAAALWAAIAAAhkZXJvc2llcgAAAAAAAAAAAAAAAAAA
+				AAAAAADDx9AqSCsABQApaX4GUmVhZG1lAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAACmZs8eA7YIAAAAAAAAAAP//
+				//8AAA0CAAAAAAAAAAAAAAAAAAAACWRucy1zcG9vZgAA
+				EAAIAADDyECqAAAAEQAIAADHgV4CAAAAAQAIAClpfgAB
+				NjkAAgAiZGVyb3NpZXI6cHJvamVjdHM6ZG5zLXNwb29m
+				OlJlYWRtZQAOAA4ABgBSAGUAYQBkAG0AZQAPABIACABk
+				AGUAcgBvAHMAaQBlAHIAEgAaL3Byb2plY3RzL2Rucy1z
+				cG9vZi9SZWFkbWUAEwAPL1VzZXJzL2Rlcm9zaWVyAAAU
+				AYAAAAAAAYAAAgABDE1hY2ludG9zaCBIRAAAAAAAAAAA
+				AAAAAAAAAMLaS1hIKwAAAA0bsRVkZXJvc2llci5zcGFy
+				c2VidW5kbGUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAAADRuyw8fQKQAAAAAAAAAA
+				/////wAACSAAAAAAAAAAAAAAAAAAAAAJLmRlcm9zaWVy
+				AAAQAAgAAMLarcgAAAARAAgAAMPIQKkAAAABAAgADRux
+				AA0brwACADJNYWNpbnRvc2ggSEQ6VXNlcnM6LmRlcm9z
+				aWVyOmRlcm9zaWVyLnNwYXJzZWJ1bmRsZQAOACwAFQBk
+				AGUAcgBvAHMAaQBlAHIALgBzAHAAYQByAHMAZQBiAHUA
+				bgBkAGwAZQAPABoADABNAGEAYwBpAG4AdABvAHMAaAAg
+				AEgARAASACVVc2Vycy8uZGVyb3NpZXIvZGVyb3NpZXIu
+				c3BhcnNlYnVuZGxlAAATAAEvAP//AAAAFQACAA///wAA
+				</data>
+				<key>FileURL</key>
+				<string>file://localhost/Users/derosier/projects/dns-spoof/Readme</string>
+				<key>RelativePath</key>
+				<string>./Readme</string>
+				<key>TypeID</key>
+				<string>_CFileLocator</string>
+				<key>Version</key>
+				<integer>1</integer>
+			</dict>
+			<key>ItemName</key>
+			<string>Readme</string>
 			<key>ItemType</key>
 			<string>FileReference</string>
 		</dict>
@@ -1010,6 +1146,94 @@
 			</dict>
 			<key>ItemName</key>
 			<string>dns_query.h</string>
+			<key>ItemType</key>
+			<string>FileReference</string>
+		</dict>
+		<key>E4B6E24E-D596-4A5E-B42C-3632538556F9</key>
+		<dict>
+			<key>ItemData</key>
+			<dict>
+				<key>AliasData</key>
+				<data>
+				AAAAAALmAAIAAAhkZXJvc2llcgAAAAAAAAAAAAAAAAAA
+				AAAAAADDx9AqSCsABQApaX4KZG5zX2RlZnMuaAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAACmXPceAxwYAAAAAAAAAAP//
+				//8AAA0CAAAAAAAAAAAAAAAAAAAACWRucy1zcG9vZgAA
+				EAAIAADDyECqAAAAEQAIAADHgTeGAAAAAQAIAClpfgAB
+				NjkAAgAmZGVyb3NpZXI6cHJvamVjdHM6ZG5zLXNwb29m
+				OmRuc19kZWZzLmgADgAWAAoAZABuAHMAXwBkAGUAZgBz
+				AC4AaAAPABIACABkAGUAcgBvAHMAaQBlAHIAEgAeL3By
+				b2plY3RzL2Rucy1zcG9vZi9kbnNfZGVmcy5oABMADy9V
+				c2Vycy9kZXJvc2llcgAAFAGAAAAAAAGAAAIAAQxNYWNp
+				bnRvc2ggSEQAAAAAAAAAAAAAAAAAAADC2ktYSCsAAAAN
+				G7EVZGVyb3NpZXIuc3BhcnNlYnVuZGxlAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AA0bssPH0CkAAAAAAAAAAP////8AAAkgAAAAAAAAAAAA
+				AAAAAAAACS5kZXJvc2llcgAAEAAIAADC2q3IAAAAEQAI
+				AADDyECpAAAAAQAIAA0bsQANG68AAgAyTWFjaW50b3No
+				IEhEOlVzZXJzOi5kZXJvc2llcjpkZXJvc2llci5zcGFy
+				c2VidW5kbGUADgAsABUAZABlAHIAbwBzAGkAZQByAC4A
+				cwBwAGEAcgBzAGUAYgB1AG4AZABsAGUADwAaAAwATQBh
+				AGMAaQBuAHQAbwBzAGgAIABIAEQAEgAlVXNlcnMvLmRl
+				cm9zaWVyL2Rlcm9zaWVyLnNwYXJzZWJ1bmRsZQAAEwAB
+				LwD//wAAABUAAgAP//8AAA==
+				</data>
+				<key>FileURL</key>
+				<string>file://localhost/Users/derosier/projects/dns-spoof/dns_defs.h</string>
+				<key>RelativePath</key>
+				<string>./dns_defs.h</string>
+				<key>TypeID</key>
+				<string>_CFileLocator</string>
+				<key>Version</key>
+				<integer>1</integer>
+			</dict>
+			<key>ItemName</key>
+			<string>dns_defs.h</string>
+			<key>ItemType</key>
+			<string>FileReference</string>
+		</dict>
+		<key>EC70AF05-3AA5-4565-9FD9-E5E2C3DAC130</key>
+		<dict>
+			<key>ItemData</key>
+			<dict>
+				<key>AliasData</key>
+				<data>
+				AAAAAALcAAIAAAhkZXJvc2llcgAAAAAAAAAAAAAAAAAA
+				AAAAAADDx9AqSCsABQApaX4HdGVzdC5zaAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAACmZy8eA7ysAAAAAAAAAAP//
+				//8AAA0CAAAAAAAAAAAAAAAAAAAACWRucy1zcG9vZgAA
+				EAAIAADDyECqAAAAEQAIAADHgV+rAAAAAQAIAClpfgAB
+				NjkAAgAjZGVyb3NpZXI6cHJvamVjdHM6ZG5zLXNwb29m
+				OnRlc3Quc2gAAA4AEAAHAHQAZQBzAHQALgBzAGgADwAS
+				AAgAZABlAHIAbwBzAGkAZQByABIAGy9wcm9qZWN0cy9k
+				bnMtc3Bvb2YvdGVzdC5zaAAAEwAPL1VzZXJzL2Rlcm9z
+				aWVyAAAUAYAAAAAAAYAAAgABDE1hY2ludG9zaCBIRAAA
+				AAAAAAAAAAAAAAAAAMLaS1hIKwAAAA0bsRVkZXJvc2ll
+				ci5zcGFyc2VidW5kbGUAAAAAAAAAAAAAAAAAAAAAAAAA
+				AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADRuyw8fQKQAA
+				AAAAAAAA/////wAACSAAAAAAAAAAAAAAAAAAAAAJLmRl
+				cm9zaWVyAAAQAAgAAMLarcgAAAARAAgAAMPIQKkAAAAB
+				AAgADRuxAA0brwACADJNYWNpbnRvc2ggSEQ6VXNlcnM6
+				LmRlcm9zaWVyOmRlcm9zaWVyLnNwYXJzZWJ1bmRsZQAO
+				ACwAFQBkAGUAcgBvAHMAaQBlAHIALgBzAHAAYQByAHMA
+				ZQBiAHUAbgBkAGwAZQAPABoADABNAGEAYwBpAG4AdABv
+				AHMAaAAgAEgARAASACVVc2Vycy8uZGVyb3NpZXIvZGVy
+				b3NpZXIuc3BhcnNlYnVuZGxlAAATAAEvAP//AAAAFQAC
+				AA///wAA
+				</data>
+				<key>FileURL</key>
+				<string>file://localhost/Users/derosier/projects/dns-spoof/test.sh</string>
+				<key>RelativePath</key>
+				<string>./test.sh</string>
+				<key>TypeID</key>
+				<string>_CFileLocator</string>
+				<key>Version</key>
+				<integer>1</integer>
+			</dict>
+			<key>ItemName</key>
+			<string>test.sh</string>
 			<key>ItemType</key>
 			<string>FileReference</string>
 		</dict>
