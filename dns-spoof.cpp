@@ -262,6 +262,7 @@ void PrintHelp( void )
    cerr << _PROJECT << " spoofs a DNS response to a hard-coded address.\n";
    cerr << "usage: " << _PROJECT << " [options]\n";
    cerr << endl;
+   cerr << "    -p --port      Define the port to bind to.\n";
    cerr << "    -c --console   Don't daemonize, run in console mode.\n";
    cerr << "    -v --version   Display the version and quit.\n";
    cerr << "    -h --help      Display this message.\n";
