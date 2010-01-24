@@ -103,31 +103,62 @@ bool CSocket::OpenUDP( int Port )
    return true;
 }
 
-int CSocket::RecieveUDP( CUDPMessage & Msg )
+void CSocket::SendUDP( const CUDPMessage & Msg )
 {
-  
+   ssize_t RecVal = -1;
+   if( Msg.mSize < 0 )
+   {
+      return;
+   }
+   
    if( mSockOpen && ((AF_INET == mDomain) && (SOCK_DGRAM == mType)) )
    {
-      ssize_t RecVal;
-      Msg.mSize = CUDPMessage::MAX_MSG_SIZE;
-      Msg.mSenderAddrLen = sizeof(Msg.mSenderAddr);
-      RecVal = recvfrom( mFDSocket, &(Msg.mMsgData), Msg.mSize, 0, 
-                         &(Msg.mSenderAddr), &(Msg.mSenderAddrLen) );
+      RecVal = sendto( mFDSocket, &(Msg.mMsgData), Msg.mSize, 0, 
+                         &(Msg.mSenderAddr), Msg.mSenderAddrLen );
       
-      if( 0 > RecVal )
+      if( RecVal < 0 )
       {
          // error
       }
       
-      Msg.mSize = RecVal;
-      return RecVal;
    }
    else
    {
       // error
    }
    
-   return -1;
+   return;
+}
+
+int CSocket::RecieveUDP( CUDPMessage & Msg )
+{
+   ssize_t RecVal = -1;
+  
+   if( mSockOpen && ((AF_INET == mDomain) && (SOCK_DGRAM == mType)) )
+   {
+      Msg.mSize = CUDPMessage::MAX_MSG_SIZE;
+      Msg.mSenderAddrLen = sizeof(Msg.mSenderAddr);
+      RecVal = recvfrom( mFDSocket, &(Msg.mMsgData), Msg.mSize, 0, 
+                         &(Msg.mSenderAddr), &(Msg.mSenderAddrLen) );
+      
+      if( RecVal >= 0 )
+      {
+         // recieved OK
+         Msg.mSize = RecVal;
+      }
+      else
+      {
+         // error
+         Msg.mSize = 0;  // invalid data, so make sure that no one looks at it.
+      }
+      
+   }
+   else
+   {
+      // error
+   }
+   
+   return RecVal;
 }
 
 

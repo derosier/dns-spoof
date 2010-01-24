@@ -113,6 +113,17 @@ void CServer::ServerTask( void )
          if( ProcessMsg( Msg ) )
          {
             // Send the message
+            try
+            {
+               mSocket->SendUDP( Msg );
+            }
+            catch(...)
+            {
+               // Error
+               #ifdef DEBUG_BUILD
+                  cerr << "Error: socket send " << endl;
+               #endif   
+            }
          }
       }
    }
@@ -138,7 +149,7 @@ bool CServer::ProcessMsg( CUDPMessage & Msg )
       {
          // Build our answer from the recieved question
          DNSMsg.mHeader.Type( RESPONSE );
-         
+         DNSMsg.mHeader.
          CDNS_Answer * Answer = new CDNS_Answer;
          DNSMsg.mAnswer = Answer;
          DNSMsg.mHeader.ANCount(1);
@@ -159,6 +170,8 @@ bool CServer::ProcessMsg( CUDPMessage & Msg )
          cout << DNSMsg;
          cout.flush();
          Msg.DumpHex();
+         
+         RetVal = true;
       }
    }
    

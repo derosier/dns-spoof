@@ -89,6 +89,7 @@ public:
    virtual void Close(void);
    virtual bool OpenUDP( int Port );
    
+   virtual void SendUDP( const CUDPMessage & Msg );
    virtual int RecieveUDP( CUDPMessage & Msg );
 
 private:
