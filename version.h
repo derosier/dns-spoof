@@ -22,11 +22,11 @@
  *            Initial stub version
  *            CVS Tag: none
  *****************************************************************************/
-/*  $Id:$
+/*  $Id$
  *****************************************************************************/
 
 #undef _VERSION
-#define _VERSION "Version 0.00"
+#define _VERSION "Version 1.00"
 #undef _COPYRIGHT
 #define _COPYRIGHT "Copyright (C) 2010 Steve deRosier. All Rights Reserved."
 #undef _PROJECT
