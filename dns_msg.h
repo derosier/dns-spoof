@@ -79,8 +79,18 @@ public:
    int Pack( uint8_t * Data );
    void Unpack( uint8_t * Data );
 
+   void Header( const CDNS_Header & Data ) { mHeader = Data; };
+   CDNS_Header Header( void ) { return mHeader; };
+   
+   void Query( const CDNS_Query & Data );
+   CDNS_Query Query( void );
+   
+   void Answer( const CDNS_Answer & Data );
+   CDNS_Answer Answer( void );
+
    friend std::ostream & operator<<( std::ostream & s, const CDNS_Msg & Msg);
 
+private:
    CDNS_Header mHeader;
    CDNS_Query * mQuery;
    CDNS_Answer * mAnswer;   

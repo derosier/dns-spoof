@@ -41,14 +41,11 @@ using namespace std;
 //****************************************************************************
 
 //****************************************************************************
-// Function name: TYPE foo(TYPE arg1, TYPE arg2)
-//    returns: return value description
-//    arg1: description
-//    arg2: description
-// Created by: author's name
-// Date created: date
-// Description: detailed description 
-// Notes: restrictions, odd modes
+// Function name: CDNS_Msg::~CDNS_Msg()
+// Created by: Steve deRosier
+// Date created: 1/23/2010
+// Description: destructor
+// Notes: Will clean up both the Query and Answer objects if they exist.
 //****************************************************************************
 CDNS_Msg::~CDNS_Msg()
 {
@@ -65,6 +62,15 @@ CDNS_Msg::~CDNS_Msg()
    }
 }
 
+//****************************************************************************
+// Function name: int CDNS_Msg::Pack( uint8_t * Data )
+//    returns: the number of bytes put into Data
+//    Data: pointer to the destination buffer
+// Created by: Steve deRosier
+// Date created: 1/23/2010
+// Description: Pack() takes the data in CDNS_Msg and packs it into a binary
+//   representation that can be used in a DNS message over the wire.
+//****************************************************************************
 int CDNS_Msg::Pack( uint8_t * Data )
 {
    int Length = 0;
@@ -83,6 +89,20 @@ int CDNS_Msg::Pack( uint8_t * Data )
    return Length;
 }
 
+//****************************************************************************
+// Function name: void CDNS_Msg::Unpack( uint8_t * Data )
+//    returns: nothing
+//    Data: Pointer to the data to un-pack
+// Created by: Steve deRosier
+// Date created: 1/23/2010
+// Description: Parses the message data from Data and places into the class
+//   instance so it can be used.
+// Notes: * CDNS_Msg doesn't support Authority or Additional sections at this time. 
+//          If these are pressent, they will be ignored.
+//        * CDNS_Msg only supports a single query and answer section each. 
+//          Further ones will both be ignored, and further an extra query section
+//          will screw up the processing of the answer section.
+//****************************************************************************
 void CDNS_Msg::Unpack( uint8_t * Data )
 {
    int Offset = 0;
@@ -119,9 +139,94 @@ void CDNS_Msg::Unpack( uint8_t * Data )
       Offset += mAnswer->Unpack( Data + Offset );
    }
 
-   // NOTE: CNDS_Msg doesn't support Authority or Additional sections at this time.   
+   // NOTE: CDNS_Msg doesn't support Authority or Additional sections at this time.   
 }
 
+//****************************************************************************
+// Function name: void CDNS_Msg::Query( const CDNS_Query & Data )
+//    returns: nothing
+//    Data: Query data to set 
+// Created by: Steve deRosier
+// Date created: 1/24/2010
+// Description: Set the query section of the message.
+//****************************************************************************
+void CDNS_Msg::Query( const CDNS_Query & Data )
+{
+   if( mQuery )
+   {
+      delete mQuery;
+      mQuery = 0;
+   }
+   
+   mQuery = new CDNS_Query;
+   
+   *mQuery = Data;
+}
+
+//****************************************************************************
+// Function name: CDNS_Query CDNS_Msg::Query( void )
+//    returns: Query data
+// Created by: Steve deRosier
+// Date created: 1/24/2010
+// Description: Get the query section of the message.
+//****************************************************************************
+CDNS_Query CDNS_Msg::Query( void )
+{
+   CDNS_Query Q;
+   if( mQuery )
+      Q = *mQuery;
+   
+   return Q;
+}
+   
+//****************************************************************************
+// Function name: void CDNS_Msg::Answer( const CDNS_Answer & Data )
+//    returns: nothing
+//    Data: Answer data to set 
+// Created by: Steve deRosier
+// Date created: 1/24/2010
+// Description: Set the answer section of the message.
+//****************************************************************************
+void CDNS_Msg::Answer( const CDNS_Answer & Data )
+{
+   if( mAnswer )
+   {
+     delete mAnswer;
+     mAnswer = 0;
+   }
+     
+   mAnswer = new CDNS_Answer;
+   
+   *mAnswer = Data;
+}
+
+//****************************************************************************
+// Function name: CDNS_Answer CDNS_Msg::Answer( void )
+//    returns: Answer data
+// Created by: Steve deRosier
+// Date created: 1/24/2010
+// Description: Get the answer section of the message.
+//****************************************************************************
+CDNS_Answer CDNS_Msg::Answer( void )
+{
+   CDNS_Answer A;
+   if( mAnswer )
+      A = *mAnswer;
+      
+   return A;
+}
+
+
+
+//****************************************************************************
+// Function name: ostream & operator<<( ostream & s, const CDNS_Msg & Msg)
+//    returns: ostream &
+//    s: ostream to write to
+//    Msg: Msg object to write
+// Created by: Steve deRosier
+// Date created: 1/23/2010
+// Description: Standard operator<< overload to write debugging info about Msg 
+//****************************************************************************
 ostream & operator<<( ostream & s, const CDNS_Msg & Msg)
 {
    s << Msg.mHeader;

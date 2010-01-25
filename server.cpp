@@ -133,43 +133,52 @@ void CServer::ServerTask( void )
 bool CServer::ProcessMsg( CUDPMessage & Msg )
 {
    bool RetVal = false;
-   
-   cout << "--- new DNS recieved ---" << endl;
-   Msg.DumpHex();
-   
-   CDNS_Msg DNSMsg( Msg.mMsgData );
-   cout << DNSMsg;
-   cout.flush();
+
+   #ifdef DEBUG_BUILD
+      cout << "--- new DNS recieved ---" << endl;
+      Msg.DumpHex();
+      
+      CDNS_Msg DNSMsg( Msg.mMsgData );
+      cout << DNSMsg;
+      cout.flush();
+   #endif
    
    // Validate our message, must be the right type of request
-   if( DNSMsg.mHeader.QDCount() > 0 )
+   CDNS_Header Header = DNSMsg.Header();
+   if( Header.QDCount() > 0 )
    {
-      if( (DNSMsg.mQuery->QType() == DNS_TYPE_A) &&
-          (DNSMsg.mQuery->QClass() == DNS_CLASS_IN) )
+      if( ((DNSMsg.Query()).QType() == DNS_TYPE_A) &&
+          ((DNSMsg.Query()).QClass() == DNS_CLASS_IN) )
       {
          // Build our answer from the recieved question
-         DNSMsg.mHeader.Type( RESPONSE );
-         DNSMsg.mHeader.
-         CDNS_Answer * Answer = new CDNS_Answer;
-         DNSMsg.mAnswer = Answer;
-         DNSMsg.mHeader.ANCount(1);
+         Header.Type( RESPONSE );
+         Header.RecurseAvail( true );
+         
+         CDNS_Answer Answer;
       
-         DNSMsg.mAnswer->QType(DNS_TYPE_A);
-         DNSMsg.mAnswer->QClass(DNS_CLASS_IN);
-         DNSMsg.mAnswer->TTL(7200);  // 2 hours
-         DNSMsg.mAnswer->RDLength(4);
-         DNSMsg.mAnswer->RData(0x06060606);
+         Answer.QType(DNS_TYPE_A);
+         Answer.QClass(DNS_CLASS_IN);
+         Answer.TTL(7200);  // 2 hours
+         Answer.RDLength(4);
+         Answer.RData(0x06060606);
          uint8_t Name[DNS_NAME_MAX];
-         DNSMsg.mQuery->GetQName( Name );
-         DNSMsg.mAnswer->SetName( Name );   
+         (DNSMsg.Query()).GetQName( Name );
+         Answer.SetName( Name );   
+
+         // Set the new header and answer; query can stay the same
+         DNSMsg.Answer( Answer );
+         Header.ANCount(1);
+         DNSMsg.Header( Header );
          
          // Convert into a format we can send 
          Msg.mSize = DNSMsg.Pack( Msg.mMsgData );
 
-         cout << "--- Answer to send ---" << endl;
-         cout << DNSMsg;
-         cout.flush();
-         Msg.DumpHex();
+         #ifdef DEBUG_BUILD
+            cout << "--- Answer to send ---" << endl;
+            cout << DNSMsg;
+            cout.flush();
+            Msg.DumpHex();
+         #endif
          
          RetVal = true;
       }

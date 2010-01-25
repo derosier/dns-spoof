@@ -60,6 +60,7 @@
 // 
 //****************************************************************************
 const std::string Name( const uint8_t * NamePtr, const int Size );
+int CopyName( uint8_t * Dest, uint8_t * Src );
 
 //****************************************************************************
 //  Class Interface

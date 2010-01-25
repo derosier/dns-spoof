@@ -41,14 +41,12 @@ using namespace std;
 //****************************************************************************
 
 //****************************************************************************
-// Function name: TYPE foo(TYPE arg1, TYPE arg2)
-//    returns: return value description
-//    arg1: description
-//    arg2: description
-// Created by: author's name
-// Date created: date
-// Description: detailed description 
-// Notes: restrictions, odd modes
+// Function name: CDNS_Header::CDNS_Header( uint8_t * Data )
+//    Data: Message data buffer to process
+// Created by: Steve deRosier
+// Date created: 1/23/2010
+// Description: Constructor to create a new header object from existing
+//   message data.
 //****************************************************************************
 CDNS_Header::CDNS_Header( uint8_t * Data )
  : mID(0), mFlags(0), mQDCount(0), mANCount(0), mNSCount(0), mARCount(0) 
@@ -57,6 +55,15 @@ CDNS_Header::CDNS_Header( uint8_t * Data )
 }
 
 
+//****************************************************************************
+// Function name: int CDNS_Header::Pack( uint8_t * Data )
+//    returns: the number of bytes put into Data
+//    Data: pointer to the destination buffer
+// Created by: Steve deRosier
+// Date created: 1/23/2010
+// Description: Pack() takes the data in CDNS_Header and packs it into a binary
+//   representation that can be used in a DNS header message over the wire.
+//****************************************************************************
 int CDNS_Header::Pack( uint8_t * Data )
 {
    uint16_t * Ptr = (uint16_t *)Data;
@@ -71,6 +78,17 @@ int CDNS_Header::Pack( uint8_t * Data )
 }
 
 
+//****************************************************************************
+// Function name: int CDNS_Header::Unpack( uint8_t * Data )
+//    returns: number of bytes consumed from Data
+//    Data: Pointer to the data to un-pack
+// Created by: Steve deRosier
+// Date created: 1/23/2010
+// Description: Parses the header message data from Data and places into the class
+//   instance so it can be used.  Returns the number of bytes parsed through
+//   so the caller is able to know the start position for the next portion
+//   of the message so it can be passed to other Unpack() functions.
+//****************************************************************************
 int CDNS_Header::Unpack( uint8_t * Data )
 {
    uint16_t * Ptr = (uint16_t *)Data;
@@ -84,6 +102,15 @@ int CDNS_Header::Unpack( uint8_t * Data )
    return 12;  // Size of a DNS header
 }
 
+//****************************************************************************
+// Function name: ostream & operator<<( ostream & s, const CDNS_Header & Hdr)
+//    returns: ostream &
+//    s: ostream to write to
+//    Hdr: Hdr object to write
+// Created by: Steve deRosier
+// Date created: 1/23/2010
+// Description: Standard operator<< overload to write debugging info about Hdr 
+//****************************************************************************
 ostream & operator<<( ostream & s, const CDNS_Header & Hdr)
 {
    char oldfill = s.fill();

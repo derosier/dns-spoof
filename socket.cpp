@@ -66,7 +66,12 @@ CSocket::~CSocket()
    
 void CSocket::Close( void )
 {
-mSockOpen = false;
+   if( close( mFDSocket ) < 0 )
+   {
+      // Error
+   }
+   
+   mSockOpen = false;
 }
 
 bool CSocket::OpenUDP( int Port )

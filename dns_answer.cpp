@@ -42,14 +42,13 @@ using namespace std;
 //****************************************************************************
 
 //****************************************************************************
-// Function name: TYPE foo(TYPE arg1, TYPE arg2)
-//    returns: return value description
-//    arg1: description
-//    arg2: description
-// Created by: author's name
-// Date created: date
-// Description: detailed description 
-// Notes: restrictions, odd modes
+// Function name: int CDNS_Answer::Pack( uint8_t * Data )
+//    returns: the number of bytes put into Data
+//    Data: pointer to the destination buffer
+// Created by: Steve deRosier
+// Date created: 1/23/2010
+// Description: Pack() takes the data in CDNS_Answer and packs it into a binary
+//   representation that can be used in a DNS answer message over the wire.
 //****************************************************************************
 int CDNS_Answer::Pack( uint8_t * Data )
 {
@@ -92,27 +91,26 @@ int CDNS_Answer::Pack( uint8_t * Data )
 }
 
 
+//****************************************************************************
+// Function name: int CDNS_Answer::Unpack( uint8_t * Data )
+//    returns: number of bytes consumed from Data
+//    Data: Pointer to the data to un-pack
+// Created by: Steve deRosier
+// Date created: 1/23/2010
+// Description: Parses the query message data from Data and places into the class
+//   instance so it can be used.  Returns the number of bytes parsed through
+//   so the caller is able to know the start position for the next portion
+//   of the message so it can be passed to other Unpack() functions.
+//****************************************************************************
 int CDNS_Answer::Unpack( uint8_t * Data )
 {
    uint8_t * DataPtr = Data;
-   uint8_t * QNamePtr = mQName;
    int Count = 0;
    
-   // First part is the name, which is made of chunks of an 8bit length, followed
-   // by that number of bytes.  End is a 0 length byte.
-   while( *DataPtr )
-   {
-      int CopyLen = (*DataPtr) + 1;
-      memcpy( QNamePtr, DataPtr, CopyLen ); // copy the length also!
-      DataPtr += CopyLen; // Don't forget the length byte
-      QNamePtr += CopyLen;
-      Count += CopyLen;
-   }
-   // append the 0 length byte to the end.
-   *QNamePtr = 0;
-   Count++;
+   // First grab the name, which must be parsed to figure out the length
+   Count = CopyName(mQName, Data);
    mQNameSize = Count;
-   DataPtr++;
+   DataPtr += Count;
    
    // Do type and class, each are 2 bytes
    mQType = ntohs(*((uint16_t *)(DataPtr)));
@@ -141,6 +139,15 @@ int CDNS_Answer::Unpack( uint8_t * Data )
 }
 
 
+//****************************************************************************
+// Function name: int CDNS_Answer::GetName( uint8_t * Name )
+//    returns: size of name copied to the buffer
+//    Name: Buffer to copy the name to
+// Created by: Steve deRosier
+// Date created: 1/23/2010
+// Description: Copies name data from instance to Name buffer.
+// Notes: Name buffer must be at least DNS_NAME_MAX in size.
+//****************************************************************************
 int CDNS_Answer::GetName( uint8_t * Name )
 {
    if( mQNameSize > 0 )
@@ -151,28 +158,31 @@ int CDNS_Answer::GetName( uint8_t * Name )
    return mQNameSize;
 }
 
+//****************************************************************************
+// Function name: void CDNS_Answer::SetName( uint8_t * Name )
+//    returns: nothing
+//    Name: Name data to set instance to.
+//    arg2: description
+// Created by: Steve deRosier
+// Date created: 1/23/2010
+// Description: Copies Name data in to instance variable.
+// Note: CopyName can forcefully truncate Name data if it is too large.  However
+//       any data that is too large violates the RFC, so this shouldn't happen.
+//****************************************************************************
 void CDNS_Answer::SetName( uint8_t * Name )
 {
-   uint8_t * DataPtr = Name;
-   uint8_t * QNamePtr = mQName;
-   int Count = 0;
-   
-   // First part is the name, which is made of chunks of an 8bit length, followed
-   // by that number of bytes.  End is a 0 length byte.
-   while( *DataPtr )
-   {
-      int CopyLen = (*DataPtr) + 1;
-      memcpy( QNamePtr, DataPtr, CopyLen ); // copy the length also!
-      DataPtr += CopyLen; // Don't forget the length byte
-      QNamePtr += CopyLen;
-      Count += CopyLen;
-   }
-   // append the 0 length byte to the end.
-   *QNamePtr = 0;
-   Count++;
-   mQNameSize = Count;
+   mQNameSize = CopyName(mQName, Name);
 }
   
+//****************************************************************************
+// Function name: ostream & operator<<( ostream & s, const CDNS_Answer & Answer )
+//    returns: ostream &
+//    s: ostream to write to
+//    Answer: Query object to write
+// Created by: Steve deRosier
+// Date created: 1/23/2010
+// Description: Standard operator<< overload to write debugging info about Answer 
+//****************************************************************************
 ostream & operator<<( ostream & s, const CDNS_Answer & Answer )
 {
    char oldfill = s.fill();
