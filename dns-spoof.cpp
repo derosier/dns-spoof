@@ -63,14 +63,7 @@ void Error( const string & ErrStr );
 
 
 //****************************************************************************
-// Function name: TYPE foo(TYPE arg1, TYPE arg2)
-//    returns: return value description
-//    arg1: description
-//    arg2: description
-// Created by: author's name
-// Date created: date
-// Description: detailed description 
-// Notes: restrictions, odd modes
+// main() - entry point
 //****************************************************************************
 int main( int argc, char * argv[] )
 {
@@ -90,15 +83,15 @@ int main( int argc, char * argv[] )
    };
    
    // Printout the comandline for fun.
-#ifdef DEBUG_BUILD
-   string cmdline = "Program command: ";
-   for( int i = 0; i < argc; i++ )
-   {
-      cmdline += argv[i];
-      cmdline += " ";
-   }
-   cout << cmdline << endl;
-#endif
+   #ifdef DEBUG_BUILD
+      string cmdline = "Program command: ";
+      for( int i = 0; i < argc; i++ )
+      {
+         cmdline += argv[i];
+         cmdline += " ";
+      }
+      cout << cmdline << endl;
+   #endif
    
    // Setup defaults.  These will be replaced by comandline options.
    bool ConsoleMode = false;
@@ -112,15 +105,15 @@ int main( int argc, char * argv[] )
       {
          case 'p':
             Port = atoi(optarg); 
-#ifdef DEBUG_BUILD
-            cout << "Using port: " << Port << endl;
-#endif         
+            #ifdef DEBUG_BUILD
+               cout << "Using port: " << Port << endl;
+            #endif         
             break;
          // Console mode -> don't daemonize
          case 'c':
-#ifdef DEBUG_BUILD
-            cout << "Console mode enabled" << endl;
-#endif         
+            #ifdef DEBUG_BUILD
+               cout << "Console mode enabled" << endl;
+            #endif         
             ConsoleMode = true;
             break;
          
@@ -143,9 +136,9 @@ int main( int argc, char * argv[] )
    ///////////////////////////////////
    if( !ConsoleMode )
    {
-#ifdef DEBUG_BUILD
-      cout << "Daemonizing" << endl;
-#endif         
+      #ifdef DEBUG_BUILD
+         cout << "Daemonizing" << endl;
+      #endif         
       try
       {
          Daemonize();
@@ -163,9 +156,9 @@ int main( int argc, char * argv[] )
    }
    else
    {
-#ifdef DEBUG_BUILD
-      cout << "--console flag given, not going to Daemon mode" << endl;
-#endif         
+      #ifdef DEBUG_BUILD
+         cout << "--console flag given, not going to Daemon mode" << endl;
+      #endif         
    }
    
 
