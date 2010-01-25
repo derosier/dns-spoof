@@ -16,7 +16,7 @@
 //   Error object for try/catch reporting.
 //
 //****************************************************************************
-//  $Id:$
+//  $Id$
 //****************************************************************************
 
 //****************************************************************************
@@ -24,12 +24,26 @@
 // Add all #includes here
 //
 //****************************************************************************
+#include "cerror.h"
 
 //****************************************************************************
 //  Defines section
 // Add all #defines or consts here
 //
 //****************************************************************************
+std::string UDP_ErrorStrings[CE_UDPSocket::MAX_ERROR] =
+{  
+   "Unknown failure",
+   "Can't create socket",
+   "Can't bind socket", 
+   "Error on close socket",
+   "Socket not open",
+   "Error on receive",
+   "Error on send",
+   "Wrong socket type",
+   "Message size is zero",
+   "Message destination is not set"
+};
 
 //****************************************************************************
 //  Function Prototype Section

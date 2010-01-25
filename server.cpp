@@ -26,6 +26,7 @@
 //****************************************************************************
 #include "server.h"
 #include "dns_msg.h"
+#include "cerror.h"
 
 #ifdef DEBUG_BUILD
 #include <iostream>
@@ -105,13 +106,22 @@ void CServer::ServerTask( void )
    // Create our UDP socket   
    mSocket = new CUDPSocket;
    
-   if( !mSocket->Open( mPort ) )
+   try
    {
-      // Error
-      #ifdef DEBUG_BUILD
-         cerr << "Error: failed to open UDP socket on port " << mPort << endl;
-      #endif   
-      return;      
+      if( !mSocket->Open( mPort ) )
+      {
+         // Error
+         #ifdef DEBUG_BUILD
+            cerr << "Error: failed to open UDP socket on port " << mPort << endl;
+         #endif   
+         return;      
+      }
+   }
+   catch( CE_UDPSocket & e )
+   {
+      cerr << "Error: failed to open UDP socket on port " << mPort;
+      cerr << ": " << e.ErrString() << "." << endl;
+      return;
    }
    
    // Get messages and process them
@@ -125,12 +135,10 @@ void CServer::ServerTask( void )
       {
          RecSize = mSocket->Recieve( Msg );
       }
-      catch(...)
+      catch( CE_UDPSocket & e )
       {
-         // Error
-         #ifdef DEBUG_BUILD
-            cerr << "Error: socket recieve " << endl;
-         #endif   
+         cerr << "Error on receive: ";
+         cerr << e.ErrString() << "." << endl;
       }
       
       // Got a message, process it
@@ -145,12 +153,10 @@ void CServer::ServerTask( void )
                cout << "sending message response" << endl;
                mSocket->Send( Response );
             }
-            catch(...)
+            catch( CE_UDPSocket & e )
             {
-               // Error
-               #ifdef DEBUG_BUILD
-                  cerr << "Error: socket send " << endl;
-               #endif   
+               cerr << "Error on send: ";
+               cerr << e.ErrString() << "." << endl;
             }
          }
       }

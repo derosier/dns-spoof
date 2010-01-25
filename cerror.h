@@ -17,7 +17,7 @@
 //   Error object for try/catch reporting
 //
 //****************************************************************************
-//  $Id:$
+//  $Id$
 //****************************************************************************
 
 // Change MODULENAME_H_ to match your module name.
@@ -104,9 +104,37 @@ public:
    
    int ErrValue(void) { return mType; };
    
-private:
+protected:
    tError mType;
    
+};
+
+class CE_Socket : public CError
+{
+};
+
+extern std::string UDP_ErrorStrings[];
+
+class CE_UDPSocket : public CE_Socket
+{
+public:
+   enum tError { UNKNOWN = 0, SOCK_CREATE, SOCK_BIND, SOCK_CLOSE, 
+                 SOCK_NOT_OPEN, SOCK_RX, SOCK_TX, SOCK_TYPE, MSG_SIZE_ZERO, 
+                 MSG_ROUTE,
+                 MAX_ERROR };
+   
+   CE_UDPSocket( const tError Type ) : mType(Type) {};
+   virtual ~CE_UDPSocket() {};
+   
+   virtual tError Type(void) { return mType; };
+   
+   const std::string ErrString( void )
+   {
+      return UDP_ErrorStrings[mType];
+   }
+
+private:
+   tError mType;
 };
 
 // Don't touch this last line.  Nothing should be 

@@ -26,6 +26,7 @@
 //****************************************************************************
 #include "UDPSocket.h"
 #include <arpa/inet.h>
+#include "cerror.h"
 
 #ifdef DEBUG_BUILD
 #include <iostream>
@@ -85,6 +86,7 @@ void CUDPSocket::Close( void )
    if( close( mFDSocket ) < 0 )
    {
       // Error
+      throw CE_UDPSocket( CE_UDPSocket::SOCK_CLOSE );
    }
    
    mSockOpen = false;
@@ -113,8 +115,7 @@ bool CUDPSocket::Open( int Port )
    if( 0 > (mFDSocket = socket( mDomain, mType, 0)) )
    {
       // error
-      cerr << "Error creating socket" << endl;
-      return false;
+      throw CE_UDPSocket( CE_UDPSocket::SOCK_CREATE );
    }
 
    mAddr.sin_family = mType;
@@ -124,8 +125,7 @@ bool CUDPSocket::Open( int Port )
    if( 0 > (bind( mFDSocket, (struct sockaddr *) &mAddr, sizeof(mAddr) )) )
    {
       // error
-      cerr << "Error binding socket" << endl;
-      return false;
+      throw CE_UDPSocket( CE_UDPSocket::SOCK_BIND );
    }
    
    mSockOpen = true;
@@ -145,21 +145,19 @@ bool CUDPSocket::Open( int Port )
 void CUDPSocket::Send( const CUDPMessage & Msg )
 {
    ssize_t RecVal = -1;
-   if( Msg.mSize < 0 )
+   if( Msg.mSize <= 0 )
    {
-      cout << "Msg size < 0" << endl;
-      return;
+      throw CE_UDPSocket( CE_UDPSocket::MSG_SIZE_ZERO );
    }
    
    if( Msg.mSenderAddrLen <= 0 )
    {
-      cout << "Msg details not set" << endl;
-      return;
+      throw CE_UDPSocket( CE_UDPSocket::MSG_ROUTE );
    }
    
    if( !mSockOpen )
    {
-      cout << "Socket not open" << endl;
+      throw CE_UDPSocket( CE_UDPSocket::SOCK_NOT_OPEN );
    }
    
    if( mSockOpen && ((AF_INET == mDomain) && (SOCK_DGRAM == mType)) )
@@ -170,14 +168,14 @@ void CUDPSocket::Send( const CUDPMessage & Msg )
       if( RecVal < 0 )
       {
          // error
-         cout << "error on send-to" << endl;
+         throw CE_UDPSocket( CE_UDPSocket::SOCK_TX );
       }
       
    }
    else
    {
       // error
-      cout << "error on validation of socket type" << endl;
+      throw CE_UDPSocket( CE_UDPSocket::SOCK_TYPE );
    }
    
    return;
@@ -212,12 +210,20 @@ int CUDPSocket::Recieve( CUDPMessage & Msg )
       {
          // error
          Msg.mSize = 0;  // invalid data, so make sure that no one looks at it.
+         throw CE_UDPSocket( CE_UDPSocket::SOCK_RX );
       }
       
    }
    else
    {
-      // error
+      if( !mSockOpen )
+      {
+         throw CE_UDPSocket( CE_UDPSocket::SOCK_NOT_OPEN );
+      }
+      else
+      {
+         throw CE_UDPSocket( CE_UDPSocket::SOCK_TYPE );
+      }
    }
    
    return RecVal;
