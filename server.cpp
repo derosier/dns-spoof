@@ -77,9 +77,9 @@ void CServer::ServerTask( void )
    #endif   
 
    // Create our UDP socket   
-   mSocket = new CSocket;
+   mSocket = new CUDPSocket;
    
-   if( !mSocket->OpenUDP( mPort ) )
+   if( !mSocket->Open( mPort ) )
    {
       // Error
       #ifdef DEBUG_BUILD
@@ -97,7 +97,7 @@ void CServer::ServerTask( void )
       // Attempt to get a message.  This will block untill an error or msg recieved.
       try
       {
-         RecSize = mSocket->RecieveUDP( Msg );
+         RecSize = mSocket->Recieve( Msg );
       }
       catch(...)
       {
@@ -115,7 +115,7 @@ void CServer::ServerTask( void )
             // Send the message
             try
             {
-               mSocket->SendUDP( Msg );
+               mSocket->Send( Msg );
             }
             catch(...)
             {

@@ -42,6 +42,7 @@
 // Add all #includes here
 //
 //****************************************************************************
+#include "socket.h"
 
 //****************************************************************************
 //  Defines section
@@ -58,10 +59,47 @@
 //****************************************************************************
 
 //****************************************************************************
-//  Class Interface
-// Define the module's class (or classes) here.
-//
 //****************************************************************************
+//****************************************************************************
+//  Class Interface
+//****************************************************************************
+
+//****************************************************************************
+// Class CUDPMessage
+// Defines a UDP message structure for use with UDP Send/Recieve functions.
+//****************************************************************************
+class CUDPMessage : public CSockMsg
+{
+public:
+   enum {MAX_MSG_SIZE = 512}; // UDP Messages are limited to 512 bytes
+   uint8_t mMsgData[MAX_MSG_SIZE];
+   size_t mSize;
+   sockaddr mSenderAddr;
+   socklen_t mSenderAddrLen;
+   
+   virtual void DumpHex();
+   CUDPMessage() : mSize(0), mSenderAddrLen(0) {};
+   virtual ~CUDPMessage() {};
+};
+
+//****************************************************************************
+// Class CSocket
+// Defines a socket class interface that can be subclassed for more specific 
+// socket types.
+//****************************************************************************
+class CUDPSocket : public CSocket
+{
+public:
+   CUDPSocket() {};
+   virtual ~CUDPSocket();
+   
+   virtual void Close(void);
+   virtual bool Open( int Port );
+   
+   virtual void Send( const CUDPMessage & Msg );
+   virtual int Recieve( CUDPMessage & Msg );
+
+};
 
 // Don't touch this last line.  Nothing should be 
 // entered below here.

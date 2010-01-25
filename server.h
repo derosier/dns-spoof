@@ -43,7 +43,7 @@
 // Add all #includes here
 //
 //****************************************************************************
-#include "socket.h"
+#include "UDPSocket.h"
 
 //****************************************************************************
 //  Defines section
@@ -77,7 +77,7 @@ public:
    bool ProcessMsg( CUDPMessage & Msg );
    
    int mPort;
-   CSocket * mSocket;
+   CUDPSocket * mSocket;
 };
 
 

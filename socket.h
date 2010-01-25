@@ -62,37 +62,39 @@
 //****************************************************************************
 
 //****************************************************************************
-//  Class Interface
-// Define the module's class (or classes) here.
-//
 //****************************************************************************
-class CUDPMessage 
+//****************************************************************************
+//  Class Interfaces
+//****************************************************************************
+
+class CSockMsg
 {
 public:
-   enum {MAX_MSG_SIZE = 512}; // UDP Messages are limited to 512 bytes
-   uint8_t mMsgData[MAX_MSG_SIZE];
-   size_t mSize;
-   sockaddr mSenderAddr;
-   socklen_t mSenderAddrLen;
-   
-   void DumpHex();
-   CUDPMessage() : mSize(0), mSenderAddrLen(0) {};
+   virtual ~CSockMsg() {};
+  
+   virtual void DumpHex() = 0;
 };
 
 
+
+//****************************************************************************
+// Class CSocket
+// Defines a socket class interface that can be subclassed for more specific 
+// socket types.
+//****************************************************************************
 class CSocket
 {
 public:
-   CSocket();
-   virtual ~CSocket();
+   CSocket::CSocket() : mSockOpen(false) {};
+   virtual ~CSocket() {};
    
-   virtual void Close(void);
-   virtual bool OpenUDP( int Port );
+   virtual void Close(void) = 0;
+   virtual bool Open( int Port ) = 0;
    
-   virtual void SendUDP( const CUDPMessage & Msg );
-   virtual int RecieveUDP( CUDPMessage & Msg );
+   virtual void Send( const CSockMsg & Msg ) {};
+   virtual int Recieve( CSockMsg & Msg ) { return 0; };
 
-private:
+protected:
 
    struct sockaddr_in mAddr;
 
