@@ -49,8 +49,8 @@ CXX = g++
 # Source and object files
 #
 SOURCES := $(wildcard *.cpp *.c)
-OBJECTS1 := test_dns_msg.o
-OBJECTS2 := test_socket.o
+OBJECTS1 := test_dns_msg.o 
+OBJECTS2 := test_socket.o ../UDPSocket.o ../cerror.o ../socket.o
 DEPENDS := $(addsuffix .d,$(basename $(SOURCES)))
 
 #
