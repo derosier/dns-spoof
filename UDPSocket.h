@@ -74,7 +74,7 @@ public:
    enum {MAX_MSG_SIZE = 512}; // UDP Messages are limited to 512 bytes
    uint8_t mMsgData[MAX_MSG_SIZE];
    size_t mSize;
-   sockaddr mSenderAddr;
+   sockaddr_in mSenderAddr;
    socklen_t mSenderAddrLen;
    
    virtual void DumpHex();

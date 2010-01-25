@@ -163,7 +163,7 @@ void CUDPSocket::Send( const CUDPMessage & Msg )
    if( mSockOpen && ((AF_INET == mDomain) && (SOCK_DGRAM == mType)) )
    {
       RecVal = sendto( mFDSocket, &(Msg.mMsgData), Msg.mSize, 0, 
-                         &(Msg.mSenderAddr), Msg.mSenderAddrLen );
+                         (struct sockaddr *)&(Msg.mSenderAddr), Msg.mSenderAddrLen );
       
       if( RecVal < 0 )
       {
@@ -199,7 +199,7 @@ int CUDPSocket::Recieve( CUDPMessage & Msg )
       Msg.mSize = CUDPMessage::MAX_MSG_SIZE;
       Msg.mSenderAddrLen = sizeof(Msg.mSenderAddr);
       RecVal = recvfrom( mFDSocket, &(Msg.mMsgData), Msg.mSize, 0, 
-                         &(Msg.mSenderAddr), &(Msg.mSenderAddrLen) );
+                         (struct sockaddr *)&(Msg.mSenderAddr), &(Msg.mSenderAddrLen) );
       
       if( RecVal >= 0 )
       {
