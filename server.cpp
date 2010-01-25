@@ -45,30 +45,56 @@ using namespace std;
 //****************************************************************************
 
 //****************************************************************************
-// Function name: TYPE foo(TYPE arg1, TYPE arg2)
-//    returns: return value description
-//    arg1: description
-//    arg2: description
-// Created by: author's name
-// Date created: date
-// Description: detailed description 
-// Notes: restrictions, odd modes
+// Function name: CServer::CServer( int Port )
+// Created by: Steve deRosier
+// Date created: 1/22/2010
+// Description: Constructor.  Initalizes member variables.  Note that the
+//   no socket is opened until the server runs, ie not here.
 //****************************************************************************
 CServer::CServer( int Port ) : mPort(Port), mSocket(0)
 {
 }
 
+//****************************************************************************
+// Function name: CServer::~CServer()
+// Created by: Steve deRosier
+// Date created: 1/22/2010
+// Description: Destructor.  It closes and deletes the socket.
+// Notes: Ignores errors from CSocket::Close().  We're closing it to cleanup 
+//        and quit anyway.
+//****************************************************************************
 CServer::~CServer()
 {
    if( mSocket )
    {
-      mSocket->Close();
+      try
+      {
+         mSocket->Close();
+      }
+      catch(...)
+      {
+         // catching and ignoring errors, we're killing the socket one way or another anyway.
+      }
+      
       delete mSocket;
    }
 }
 
-
-
+//****************************************************************************
+// Function name: void CServer::ServerTask( void )
+//    returns: nothing
+// Created by: Steve deRosier
+// Date created: 1/22/2010
+// Description: Main server task.  Basic flow/logic follows:
+//   1. Create a new UDP socket
+//   2. Open the socket
+//   3. Loop forever:
+//      3a. Recieve a message (blocks)
+//      3b. If message recieved, process it
+//      3c. If the message recieved generates a response, send the response
+//
+// Notes: Do not call directly, call RunServer() instead.
+//****************************************************************************
 void CServer::ServerTask( void )
 {
 
@@ -110,12 +136,14 @@ void CServer::ServerTask( void )
       // Got a message, process it
       if( RecSize > 0 )
       {
-         if( ProcessMsg( Msg ) )
+         CUDPMessage Response;
+         if( ProcessMsg( Msg, Response ) )
          {
             // Send the message
             try
             {
-               mSocket->Send( Msg );
+               cout << "sending message response" << endl;
+               mSocket->Send( Response );
             }
             catch(...)
             {
@@ -126,11 +154,23 @@ void CServer::ServerTask( void )
             }
          }
       }
-   }
+      
+      
+   } // END while(1)
 }
 
 
-bool CServer::ProcessMsg( CUDPMessage & Msg )
+//****************************************************************************
+// Function name: bool CServer::ProcessMsg( CUDPMessage & Msg, CUDPMessage & ResponseMsg )
+//    returns: true if there is a response to send
+//    Msg: Msg recieved 
+//    ResponseMsg: Response message to send
+// Created by: Steve deRosier
+// Date created: 1/22/2010
+// Description: Determines if the message recieved is a query, and if so 
+//   constructs our contrived response, using SPOOF_IP as the IP to respond with.
+//****************************************************************************
+bool CServer::ProcessMsg( CUDPMessage & Msg, CUDPMessage & ResponseMsg )
 {
    bool RetVal = false;
 
@@ -160,7 +200,7 @@ bool CServer::ProcessMsg( CUDPMessage & Msg )
          Answer.QClass(DNS_CLASS_IN);
          Answer.TTL(7200);  // 2 hours
          Answer.RDLength(4);
-         Answer.RData(0x06060606);
+         Answer.RData(SPOOF_IP);
          uint8_t Name[DNS_NAME_MAX];
          (DNSMsg.Query()).GetQName( Name );
          Answer.SetName( Name );   
@@ -171,16 +211,21 @@ bool CServer::ProcessMsg( CUDPMessage & Msg )
          DNSMsg.Header( Header );
          
          // Convert into a format we can send 
-         Msg.mSize = DNSMsg.Pack( Msg.mMsgData );
+         ResponseMsg.mSize = DNSMsg.Pack( ResponseMsg.mMsgData );
+         
+         // Setup the rest of our response Msg
+         ResponseMsg.mSenderAddr = Msg.mSenderAddr;
+         ResponseMsg.mSenderAddrLen = Msg.mSenderAddrLen;
+         
 
          #ifdef DEBUG_BUILD
             cout << "--- Answer to send ---" << endl;
             cout << DNSMsg;
             cout.flush();
-            Msg.DumpHex();
+            ResponseMsg.DumpHex();
          #endif
          
-         RetVal = true;
+         RetVal = true; // Msg processed and have a response to send.
       }
    }
    

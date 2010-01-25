@@ -51,6 +51,11 @@
 //
 //****************************************************************************
 
+// SPOOF_IP is the hard-coded IP address to send in repsonse to all DNS requests.
+// Replace the number with any other number to change.  I recomend hex as it
+// is easier to visualize each individual octect of the IP address. 
+const uint32_t SPOOF_IP = 0x06060606; // 6.6.6.6
+
 //****************************************************************************
 //  Function Prototype Section
 // Add prototypes for all functions called by this
@@ -74,7 +79,7 @@ public:
    
 public:   
    void ServerTask( void );
-   bool ProcessMsg( CUDPMessage & Msg );
+   bool ProcessMsg( CUDPMessage & Msg, CUDPMessage & ResponseMsg );
    
    int mPort;
    CUDPSocket * mSocket;

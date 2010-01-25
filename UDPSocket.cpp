@@ -47,22 +47,39 @@ using namespace std;
 //****************************************************************************
 
 //****************************************************************************
-// Function name: TYPE foo(TYPE arg1, TYPE arg2)
-//    returns: return value description
-//    arg1: description
-//    arg2: description
+// Function name: CUDPSocket::~CUDPSocket()
 // Created by: author's name
-// Date created: date
-// Description: detailed description 
-// Notes: restrictions, odd modes
+// Created by: Steve deRosier
+// Date created: 1/22/2010
+// Description: Destructor.  Closes the socket before finishing.
+// Notes: If Close() throws, we're going to ignore the error.  Odds are you're 
+//        only closing this from the destructor if the program is closing down
+//        or in other situations where we don't want to see an error anyway.
 //****************************************************************************
 CUDPSocket::~CUDPSocket()
 {
    if( mSockOpen )
-      Close();
+   {
+      try
+      {
+         Close();
+      }
+      catch(...)
+      {
+         // catching and ignoring errors, we're killing the socket one way or another anyway.
+      }
+   }
    mSockOpen = false;
 }
    
+//****************************************************************************
+// Function name: void CUDPSocket::Close( void )
+//    returns: nothing
+// Created by: Steve deRosier
+// Date created: 1/22/2010
+// Description: Closes the socket.  
+// Notes: 
+//****************************************************************************
 void CUDPSocket::Close( void )
 {
    if( close( mFDSocket ) < 0 )
@@ -73,6 +90,15 @@ void CUDPSocket::Close( void )
    mSockOpen = false;
 }
 
+//****************************************************************************
+// Function name: bool CUDPSocket::Open( int Port )
+//    returns: true if the socket was opened.
+//    Port: Port number to bind the socket to.
+// Created by: Steve deRosier
+// Date created: 1/22/2010
+// Description: Opens a UDP datagram socket on the specifed port.
+// Notes: restrictions, odd modes
+//****************************************************************************
 bool CUDPSocket::Open( int Port )
 {
    if( mSockOpen )
@@ -107,12 +133,33 @@ bool CUDPSocket::Open( int Port )
    return true;
 }
 
+//****************************************************************************
+// Function name: void CUDPSocket::Send( const CUDPMessage & Msg )
+//    returns: nothing
+//    Msg: The message to send
+// Created by: Steve deRosier
+// Date created: 1/22/2010
+// Description: Sends Msg on the already open UDP socket.
+// Notes: 1. Send() will block until the mesage is sent.
+//****************************************************************************
 void CUDPSocket::Send( const CUDPMessage & Msg )
 {
    ssize_t RecVal = -1;
    if( Msg.mSize < 0 )
    {
+      cout << "Msg size < 0" << endl;
       return;
+   }
+   
+   if( Msg.mSenderAddrLen <= 0 )
+   {
+      cout << "Msg details not set" << endl;
+      return;
+   }
+   
+   if( !mSockOpen )
+   {
+      cout << "Socket not open" << endl;
    }
    
    if( mSockOpen && ((AF_INET == mDomain) && (SOCK_DGRAM == mType)) )
@@ -123,17 +170,28 @@ void CUDPSocket::Send( const CUDPMessage & Msg )
       if( RecVal < 0 )
       {
          // error
+         cout << "error on send-to" << endl;
       }
       
    }
    else
    {
       // error
+      cout << "error on validation of socket type" << endl;
    }
    
    return;
 }
 
+//****************************************************************************
+// Function name: int CUDPSocket::Recieve( CUDPMessage & Msg )
+//    returns: the recieved size of the message
+//    Msg: Destination message class structure.
+// Created by: Steve deRosier
+// Date created: 1/22/2010
+// Description: Recieves a UDP message and places it in the destination Msg.
+// Notes: Recieve() will block until a message is received.
+//****************************************************************************
 int CUDPSocket::Recieve( CUDPMessage & Msg )
 {
    ssize_t RecVal = -1;
@@ -166,9 +224,15 @@ int CUDPSocket::Recieve( CUDPMessage & Msg )
 }
 
 
+//****************************************************************************
+// Function name: void CUDPMessage::DumpHex()
+//    returns: nothing
+// Created by: Steve deRosier
+// Date created: 1/22/2010
+// Description:  Debugging dump of the message in hex mode.
+//****************************************************************************
 void CUDPMessage::DumpHex()
 {
-#ifdef DEBUG_BUILD
    char oldfill = cout.fill();
 
    cout << endl << endl << "CUDPMessage dump:" << endl;
@@ -197,7 +261,6 @@ void CUDPMessage::DumpHex()
    cout << dec;
    cout.fill(oldfill);  
    cout.flush();
-#endif
 }
 
 
