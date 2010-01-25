@@ -13,7 +13,7 @@
 # First written on 1/21/2010 by Steve deRosier.
 #
 ##############################################################################
-#  $Id:$
+#  $Id$
 ##############################################################################
 
 #
@@ -80,14 +80,9 @@ $(TARGET) : debug_msg build_msg $(OBJECTS)
 .PHONY: all
 all : $(TARGET)
 
-.PHONY: install
-install : 
-#	scp $(TARGET) root@$(INSTIP):/usr/bin/pdcd.2
-#	ssh root@$(INSTIP) chmod a+x /usr/bin/pdcd.2
-#	ssh root@$(INSTIP) ln -f -s /usr/bin/pdcd.2 /usr/bin/pdcd
-
 .PHONY: check
-
+check : test.sh $(TARGET)
+	bash ./test.sh
 
 .PHONY: clean
 clean :
