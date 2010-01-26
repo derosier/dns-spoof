@@ -76,14 +76,14 @@ DEPENDS := $(addsuffix .d,$(basename $(SOURCES)))
 # TARGETS
 #
 
+.PHONY: all
+all : $(TARGET1) $(TARGET2)
+
 $(TARGET1) : $(OBJECTS1)
 	$(CXX) $(LDFLAGS) -o $(TARGET1) $(OBJECTS1) $(LIBS)
 
 $(TARGET2) : $(OBJECTS2)
 	$(CXX) $(LDFLAGS) -o $(TARGET2) $(OBJECTS2) $(LIBS)
-
-.PHONY: all
-all : $(TARGET1) $(TARGET2)
 
 .PHONY: clean
 clean :
