@@ -99,7 +99,7 @@ public:
    uint16_t ID( void ) { return mID; };
    void ID( uint16_t id ) { mID = id; };
 
-   tMsgType Type( void ) { return (mFlags & QRMASK); };
+   tMsgType Type( void ) { return ((mFlags & QRMASK) >> 15); };
    void Type( tMsgType t ) { mFlags |= (QRMASK & (t<<15)); };
    
    tOpType OpCode( void ) { return ((mFlags & OPCODEMASK) >> 11); };
