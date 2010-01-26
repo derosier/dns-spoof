@@ -85,7 +85,7 @@ public:
 class CSocket
 {
 public:
-   CSocket::CSocket() : mSockOpen(false) {};
+   CSocket() : mSockOpen(false) {};
    virtual ~CSocket() {};
    
    virtual void Close(void) = 0;
