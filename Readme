@@ -1,3 +1,14 @@
+dns-spoof
+
+By: Steve deRosier
+steve.derosier@gmail.com
+
+Copyright (C) 2010 Steve deRosier.
+All rights reserved.
+
+dns-spoof is a DNS server that only returns a hard-coded IP address for any A record queries.  At 
+the moment it will return an IP of 6.6.6.6 for any lookups.
+
 ==
 Building:
 
@@ -16,7 +27,9 @@ Typical building and use would be:
    make
    make check
    dns-spoof
-   
+
+Unit tests may be built by running `make` in the sub-directory test.  
+
 ==
 dns-spoof usage
 
@@ -43,9 +56,14 @@ dig @localhost -p 9797 textureandlight.com
 
 
 ==
-Design decisions:
-
-* Chose not to implment mesage compression in the answer.
-
-==
 Notes and limitations:
+
+dns-spoof is not intended to be used as a real DNS server.  It follows the RFC enough to work with 
+dig for its limited purpose, but is not fully implmented.  Unusal datagrams, different types of
+lookups and so on won't work.
+
+It doesn't implment message compression.  It wasn't needed in the limited scope of the assignment.
+
+Only UDP sockets are implmented.  There was no need to implment other socket types.
+
+Only enough of DNS messages are implmented to handle the limited assignment.
