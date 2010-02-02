@@ -182,15 +182,15 @@ void CUDPSocket::Send( const CUDPMessage & Msg )
 }
 
 //****************************************************************************
-// Function name: int CUDPSocket::Recieve( CUDPMessage & Msg )
-//    returns: the recieved size of the message
+// Function name: int CUDPSocket::Receive( CUDPMessage & Msg )
+//    returns: the Received size of the message
 //    Msg: Destination message class structure.
 // Created by: Steve deRosier
 // Date created: 1/22/2010
-// Description: Recieves a UDP message and places it in the destination Msg.
-// Notes: Recieve() will block until a message is received.
+// Description: Receives a UDP message and places it in the destination Msg.
+// Notes: Receive() will block until a message is received.
 //****************************************************************************
-int CUDPSocket::Recieve( CUDPMessage & Msg )
+int CUDPSocket::Receive( CUDPMessage & Msg )
 {
    ssize_t RecVal = -1;
   
@@ -203,7 +203,7 @@ int CUDPSocket::Recieve( CUDPMessage & Msg )
       
       if( RecVal >= 0 )
       {
-         // recieved OK
+         // Received OK
          Msg.mSize = RecVal;
       }
       else

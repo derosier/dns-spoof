@@ -90,9 +90,9 @@ CServer::~CServer()
 //   1. Create a new UDP socket
 //   2. Open the socket
 //   3. Loop forever:
-//      3a. Recieve a message (blocks)
-//      3b. If message recieved, process it
-//      3c. If the message recieved generates a response, send the response
+//      3a. Receive a message (blocks)
+//      3b. If message Received, process it
+//      3c. If the message Received generates a response, send the response
 //
 // Notes: Do not call directly, call RunServer() instead.
 //****************************************************************************
@@ -130,10 +130,10 @@ void CServer::ServerTask( void )
       int RecSize = 0;
       CUDPMessage Msg;
       
-      // Attempt to get a message.  This will block untill an error or msg recieved.
+      // Attempt to get a message.  This will block untill an error or msg Received.
       try
       {
-         RecSize = mSocket->Recieve( Msg );
+         RecSize = mSocket->Receive( Msg );
       }
       catch( CE_UDPSocket & e )
       {
@@ -169,22 +169,23 @@ void CServer::ServerTask( void )
 //****************************************************************************
 // Function name: bool CServer::ProcessMsg( CUDPMessage & Msg, CUDPMessage & ResponseMsg )
 //    returns: true if there is a response to send
-//    Msg: Msg recieved 
+//    Msg: Msg Received 
 //    ResponseMsg: Response message to send
 // Created by: Steve deRosier
 // Date created: 1/22/2010
-// Description: Determines if the message recieved is a query, and if so 
+// Description: Determines if the message Received is a query, and if so 
 //   constructs our contrived response, using SPOOF_IP as the IP to respond with.
 //****************************************************************************
 bool CServer::ProcessMsg( CUDPMessage & Msg, CUDPMessage & ResponseMsg )
 {
    bool RetVal = false;
 
+   CDNS_Msg DNSMsg( Msg.mMsgData );
+
    #ifdef DEBUG_BUILD
-      cout << "--- new DNS recieved ---" << endl;
+      cout << "--- new DNS received ---" << endl;
       Msg.DumpHex();
       
-      CDNS_Msg DNSMsg( Msg.mMsgData );
       cout << DNSMsg;
       cout.flush();
    #endif
@@ -196,7 +197,7 @@ bool CServer::ProcessMsg( CUDPMessage & Msg, CUDPMessage & ResponseMsg )
       if( ((DNSMsg.Query()).QType() == DNS_TYPE_A) &&
           ((DNSMsg.Query()).QClass() == DNS_CLASS_IN) )
       {
-         // Build our answer from the recieved question
+         // Build our answer from the Received question
          Header.Type( RESPONSE );
          Header.RecurseAvail( true );
          

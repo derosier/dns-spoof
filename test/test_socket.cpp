@@ -133,10 +133,10 @@ int main( int argc, char * argv[] )
       int RecSize = 0;
       CUDPMessage Msg;
       
-      // Attempt to get a message.  This will block untill an error or msg recieved.
+      // Attempt to get a message.  This will block untill an error or msg Received.
       try
       {
-         RecSize = mSocket->Recieve( Msg );
+         RecSize = mSocket->Receive( Msg );
       }
       catch( CE_UDPSocket & e )
       {
@@ -198,14 +198,14 @@ int main( int argc, char * argv[] )
 
       cout << "Test 2: passed" << endl;
       
-      cout << "Test 3: recieve message from client" << endl;
+      cout << "Test 3: Receive message from client" << endl;
       int RecSize = 0;
       CUDPMessage Msg;
       
-      // Attempt to get a message.  This will block untill an error or msg recieved.
+      // Attempt to get a message.  This will block untill an error or msg Received.
       try
       {
-         RecSize = mSocket->Recieve( Msg );
+         RecSize = mSocket->Receive( Msg );
       }
       catch( CE_UDPSocket & e )
       {
@@ -219,7 +219,7 @@ int main( int argc, char * argv[] )
       {
          char buff[512];
          memcpy( buff, &(Msg.mMsgData), Msg.mSize ); 
-         cout << "Server recieved from client: \"" << buff << "\"" << endl;
+         cout << "Server Received from client: \"" << buff << "\"" << endl;
          cout << "Test 3: passed"  << endl;
          
          cout << "Test 4: sending message to client" << endl;

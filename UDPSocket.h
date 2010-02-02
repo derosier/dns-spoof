@@ -66,7 +66,7 @@
 
 //****************************************************************************
 // Class CUDPMessage
-// Defines a UDP message structure for use with UDP Send/Recieve functions.
+// Defines a UDP message structure for use with UDP Send/Receive functions.
 //****************************************************************************
 class CUDPMessage : public CSockMsg
 {
@@ -97,7 +97,7 @@ public:
    virtual bool Open( int Port );
    
    virtual void Send( const CUDPMessage & Msg );
-   virtual int Recieve( CUDPMessage & Msg );
+   virtual int Receive( CUDPMessage & Msg );
 
 };
 

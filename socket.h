@@ -92,7 +92,7 @@ public:
    virtual bool Open( int Port ) = 0;
    
    virtual void Send( const CSockMsg & Msg ) {};
-   virtual int Recieve( CSockMsg & Msg ) { return 0; };
+   virtual int Receive( CSockMsg & Msg ) { return 0; };
 
 protected:
 
