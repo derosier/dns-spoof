@@ -1,16 +1,19 @@
 dns-spoof
+=========
 
 By: Steve deRosier
 derosier@gmail.com
 
 Copyright (C) 2010 Steve deRosier.
 All rights reserved.
+Licensed to Meter, Inc. to use as an example answer for the dns-spoof interview question.
 
 dns-spoof is a DNS server that only returns a hard-coded IP address for any A record queries.  At 
 the moment it will return an IP of 6.6.6.6 for any lookups.
 
-==
+
 Building:
+---------
 
 dns-spoof may be built by issuing the command `make`.  It should build on any basic Linux or MacOSX 
 system.  
@@ -24,39 +27,42 @@ No install target was included as this program is not intended for distubution a
 A test of the build can be run after building by using the command `make check`.
 
 Typical building and use would be:
-   make
-   make check
-   dns-spoof
+
+    make
+    make check
+    dns-spoof
 
 Unit tests may be built by running `make` in the sub-directory test.  
 
-==
+
 dns-spoof usage
+---------------
 
 dns-spoof includes a number of command-line switches for ease of use or information printing:
 
-   dns-spoof [options]
-   
-   Options:
+    dns-spoof [options]
+
+    Options:
     -c, --console   
-       Don't daemonize, run in console mode.
-    
+        Don't daemonize, run in console mode.
+
     -h, --help      
-       Display usage information.
-    
+        Display usage information.
+
     -p port, --port=port      
-       Define the port to bind to.  By default, dns-spoof binds to port 53 for DNS.
-    
+        Define the port to bind to.  By default, dns-spoof binds to port 53 for DNS.
+
     -v, --version   
-       Display the version information.
+        Display the version information.
 
 Basic use can be as simple as the following:
-./dns-spoof -p 9797
-dig @localhost -p 9797 textureandlight.com
+
+    ./dns-spoof -p 9797
+    dig @localhost -p 9797 textureandlight.com
 
 
-==
 Notes and limitations:
+----------------------
 
 dns-spoof is not intended to be used as a real DNS server.  It follows the RFC enough to work with 
 dig for its limited purpose, but is not fully implmented.  Unusal datagrams, different types of

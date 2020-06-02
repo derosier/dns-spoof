@@ -1,0 +1,66 @@
+Hi #CANDIDATE#,
+
+It was great talking with you today. Thank you for taking the time and telling me a bit about yourself.
+
+As part of our interview process at Meter we like to see code from our
+candidates. It helps us get to know you better as well as gives us
+something concrete to discuss with you.
+
+But, I happen to hate two things about interviewing:
+1. "Coding" on a white-board.
+2. Coding questions that are either trick questions or from an ECS40 course
+
+So, we have a little coding assignment for you. We want to be
+respectful of your time. I expect the task to take somewhere between
+two and twenty hours depending on how you work, if you already know
+the DNS spec, and other variables. Take your time, no stress. If you
+want to take more or less time on it, that's up to you. We will code
+review it in your in-person interview.
+
+When you are done, please send the resulting project to me. If you
+have any questions, please don't hesitate to ask.
+
+DNS Spoofing assignment
+------------------------------------
+
+Please write a minimal DNS spoofing daemon for Linux that listens
+on the DNS port of an A record request (e.g.  foo.com) and returns a
+fixed, hard coded address (e.g. 6.6.6.6).  You will be evaluated on
+the quality of the code as well as its functionality.  We want to see
+proper error handling, commenting, unit testing, etc.
+
+Example testing steps:
+
+linux box 1:
+
+    # cd your-program-directory
+    # make
+    # make check       # we'd love to see at least one test here :)
+    # ./your-program
+
+linux box 2:
+
+    # dig @linux-box-1 foo.com
+
+expected response:
+Something like...
+    ; <<>> DiG 9.6.1-P2 <<>> @192.168.1.1 foo.com
+    ; (1 server found)
+    ;; global options: +cmd
+    ;; Got answer:
+    ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 27387
+    ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+
+    ;; QUESTION SECTION:
+    ;foo.com.                       IN      A
+
+    ;; ANSWER SECTION:
+    foo.com.                3600    IN      A 6.6.6.6
+
+    ;; Query time: 58 msec
+    ;; SERVER: 192.168.1.1#53(192.168.1.1)
+    ;; WHEN: Fri Jan  8 13:23:22 2010
+    ;; MSG SIZE  rcvd: 41
+
+Thanks,
+- #INTERVIEWER#
